@@ -8,156 +8,105 @@
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 :root{
-  --n9:#0A1628;--n8:#0A2472;--n7:#1565C0;--n6:#1E88E5;--n5:#42A5F5;
-  --n4:#90CAF9;--n3:#BBDEFB;--n2:#E3F2FD;--n1:#F0F7FF;
-  --cy:#00B0FF;
-  --r6:#E53935;--r5:#EF5350;--r1:#FFEBEE;--r2:#FFCDD2;
-  --am:#F57F17;--am1:#FFF8E1;
-  --gr:#2E7D32;--gr1:#E8F5E9;
-  --card:#fff;--bg:#F0F7FF;--border:#BBDEFB;
-  --muted:#546E7A;--shadow:0 2px 14px rgba(10,36,114,.09);
+  --n8:#0A2472;--n7:#1565C0;--n6:#1E88E5;--n5:#42A5F5;--n3:#BBDEFB;--n2:#E3F2FD;--n1:#F0F7FF;
+  --cy:#00B0FF;--r6:#E53935;--r1:#FFEBEE;--r2:#FFCDD2;--am:#F57F17;--am1:#FFF8E1;
+  --g7:#2E7D32;--g1:#E8F5E9;--card:#fff;--bg:#F0F7FF;--border:#BBDEFB;--muted:#546E7A;
+  --shadow:0 2px 14px rgba(10,36,114,.09);
 }
 body{font-family:'Segoe UI',Arial,sans-serif;background:var(--bg);color:var(--n8);min-height:100vh}
 
-/* ── TOPBAR ── */
-.topbar{background:var(--n8);padding:0 24px;height:52px;display:flex;align-items:center;justify-content:space-between;box-shadow:0 2px 12px rgba(10,36,114,.3)}
+/* TOPBAR */
+.topbar{background:var(--n8);padding:0 22px;height:50px;display:flex;align-items:center;justify-content:space-between;box-shadow:0 2px 10px rgba(10,36,114,.3)}
 .logo{font-size:17px;font-weight:700;color:#fff;letter-spacing:1.5px}.logo span{color:var(--cy)}
 .tp-mid{display:flex;align-items:center;gap:12px}
-.tp-divider{width:1px;height:18px;background:rgba(255,255,255,.2)}
+.tp-div{width:1px;height:18px;background:rgba(255,255,255,.2)}
 .tp-title{font-size:12px;font-weight:500;color:rgba(255,255,255,.7)}
 .tp-right{display:flex;align-items:center;gap:8px}
-.dtag{background:rgba(0,176,255,.15);border:1px solid rgba(0,176,255,.3);color:var(--cy);padding:3px 10px;border-radius:16px;font-size:11px;font-weight:600}
-.live{width:7px;height:7px;border-radius:50%;background:#4CAF50;animation:pl 2s infinite}
+.ldot{width:7px;height:7px;border-radius:50%;background:#4CAF50;animation:pl 2s infinite}
 @keyframes pl{0%,100%{opacity:1}50%{opacity:.4}}
+.dtag{background:rgba(0,176,255,.15);border:1px solid rgba(0,176,255,.3);color:var(--cy);padding:3px 10px;border-radius:14px;font-size:11px;font-weight:600}
+.hlinks{display:flex;gap:8px}
+.hlink{padding:4px 12px;border-radius:8px;font-size:11px;font-weight:700;text-decoration:none;transition:all .2s}
+.hlink-blue{background:var(--cy);color:var(--n8)}.hlink-blue:hover{background:#fff}
+.hlink-out{background:rgba(255,255,255,.12);color:#fff;border:1px solid rgba(255,255,255,.25)}.hlink-out:hover{background:rgba(255,255,255,.22)}
 
-/* ── TABS ── */
-.tabbar{background:var(--card);border-bottom:2px solid var(--border);display:flex;position:sticky;top:0;z-index:100;padding:0 24px}
-.tab{padding:13px 24px;font-size:12.5px;font-weight:600;color:var(--muted);cursor:pointer;border:none;background:none;border-bottom:3px solid transparent;margin-bottom:-2px;transition:all .2s;white-space:nowrap}
+/* TABS */
+.tabbar{background:#fff;border-bottom:2px solid var(--border);display:flex;position:sticky;top:0;z-index:100;padding:0 22px}
+.tab{padding:13px 22px;font-size:12.5px;font-weight:600;color:var(--muted);cursor:pointer;border:none;background:none;border-bottom:3px solid transparent;margin-bottom:-2px;transition:all .2s;white-space:nowrap}
 .tab:hover{color:var(--n7)}.tab.active{color:var(--n8);border-bottom-color:var(--cy)}
-.tab-badge{font-size:9.5px;padding:1px 6px;border-radius:10px;margin-left:5px;font-weight:700}
-.tb-bad{background:var(--r1);color:var(--r6)}
-.tb-ok{background:var(--n2);color:var(--n7)}
-.tb-cmp{background:var(--n3);color:var(--n8)}
+.tbadge{font-size:9.5px;padding:1px 7px;border-radius:10px;margin-left:5px;font-weight:700}
+.tb-bad{background:var(--r1);color:var(--r6)}.tb-ok{background:var(--n2);color:var(--n7)}.tb-cmp{background:var(--n3);color:var(--n8)}
 
-/* ── PAGES ── */
+/* PAGES */
 .page{display:none}.page.active{display:block}
-.dash{padding:16px 20px;display:flex;flex-direction:column;gap:14px}
+.dash{padding:14px 18px;display:flex;flex-direction:column;gap:12px}
 
-/* ── KPI STRIP — 5 cards ── */
-.kpi5{display:grid;grid-template-columns:repeat(5,1fr);gap:0;margin-bottom:0}
-.kpi6{display:grid;grid-template-columns:repeat(6,1fr);gap:0}
-.kpi6 .kc,.kpi5 .kc{border-radius:0;border-top:3px solid var(--border);border-right:1px solid var(--border);margin:0}
-.kpi6 .kc:first-child,.kpi5 .kc:first-child{border-radius:10px 0 0 10px}
-.kpi6 .kc:last-child,.kpi5 .kc:last-child{border-radius:0 10px 10px 0;border-right:none}
-.kc{background:var(--card);padding:14px 16px;box-shadow:var(--shadow);border-top:3px solid var(--border)}
+/* KPI 6-CARD STRIP — seamless */
 .kpi6{display:grid;grid-template-columns:repeat(6,1fr);box-shadow:var(--shadow);border-radius:10px;overflow:hidden}
-.kpi6 .kc{border-radius:0;border-right:1px solid var(--border);box-shadow:none}
-.kpi6 .kc:last-child{border-right:none}
-.kc.kavail{border-top-color:var(--n7)}
-.kc.kunavail{border-top-color:var(--r6)}
-.kc.ktotal{border-top-color:var(--n5)}
-.kc.kfar-bad{border-top-color:var(--r6)}
-.kc.kfar-ok{border-top-color:var(--n7)}
-.kc.kart{border-top-color:var(--n6)}
-.kc.kacr-bad{border-top-color:var(--am)}
-.kc.kacr-ok{border-top-color:var(--n7)}
-.kl{font-size:9px;font-weight:700;letter-spacing:1.1px;text-transform:uppercase;color:var(--muted);margin-bottom:3px}
-.kv{font-size:29px;font-weight:700;line-height:1;margin:3px 0}
-.ks{font-size:10px;color:var(--muted);line-height:1.4}
-.kb{display:inline-block;margin-top:7px;font-size:9.5px;font-weight:700;padding:2px 8px;border-radius:10px}
-.kb-r{background:var(--r1);color:#C62828}.kb-b{background:var(--n2);color:var(--n7)}.kb-a{background:var(--am1);color:#8a4a00}
+.kc{background:#fff;padding:13px 14px;border-top:3px solid var(--border);border-right:1px solid var(--border)}
+.kc:last-child{border-right:none}
+.kc.bad{border-top-color:var(--r6)}.kc.ok{border-top-color:var(--n7)}.kc.warn{border-top-color:var(--am)}.kc.grn{border-top-color:var(--g7)}
+.kl{font-size:8.5px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--muted);margin-bottom:2px}
+.kv{font-size:24px;font-weight:700;line-height:1;margin:2px 0}
+.ks{font-size:9px;color:var(--muted);line-height:1.35}
+.kb{display:inline-block;margin-top:5px;font-size:9px;font-weight:700;padding:2px 7px;border-radius:8px}
+.kb-r{background:var(--r1);color:#C62828}.kb-b{background:var(--n2);color:var(--n7)}.kb-a{background:var(--am1);color:#8a4a00}.kb-g{background:var(--g1);color:var(--g7)}
 
-/* ── MAIN LAYOUT ── */
-/* Top row: main chart (large, 2/3) + downtime (1/3) */
-.top-row{display:grid;grid-template-columns:2fr 1fr;gap:14px}
-/* Process grid: 3 cols x 2 rows */
-.proc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
-/* Secondary charts */
-.row2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+/* LAYOUT */
+.top-row{display:grid;grid-template-columns:2fr 1fr;gap:12px}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.row3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}
 
-/* ── CHART CARD ── */
-.cc{background:var(--card);border-radius:10px;padding:16px 18px;box-shadow:var(--shadow)}
+/* CHART CARD */
+.cc{background:#fff;border-radius:10px;padding:14px 16px;box-shadow:var(--shadow)}
 .ct{font-size:12px;font-weight:700;color:var(--n8);margin-bottom:2px}
-.cs{font-size:10px;color:var(--muted);margin-bottom:12px}
+.cs{font-size:9.5px;color:var(--muted);margin-bottom:10px}
 
-/* ── PROCESS CARDS ── */
-.pc{background:var(--card);border-radius:10px;padding:14px 16px;box-shadow:var(--shadow);border-left:4px solid var(--r6)}
-.pc.ok-proc{border-left-color:var(--n7)}
-.pc-icon{font-size:18px;margin-bottom:6px}
-.pc-title{font-size:11px;font-weight:700;color:var(--n8);margin-bottom:5px}
-.pc-state{font-size:10px;line-height:1.5;padding:5px 8px;border-radius:6px;margin-bottom:5px}
-.pc-bad{background:var(--r1);color:#b71c1c}
-.pc-good{background:var(--n2);color:var(--n8)}
-.pc-kpi{font-size:9.5px;font-weight:700;color:var(--muted)}
+/* PROCESS CARDS */
+.proc6{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.pc{background:#fff;border-radius:10px;padding:12px 14px;box-shadow:var(--shadow);border-left:4px solid var(--r6)}
+.pc.ok{border-left-color:var(--n7)}
+.pi{font-size:16px;margin-bottom:5px}
+.pt{font-size:11px;font-weight:700;color:var(--n8);margin-bottom:4px}
+.pb{font-size:9.5px;line-height:1.5;padding:4px 8px;border-radius:6px;margin-bottom:4px}
+.pb-bad{background:var(--r1);color:#b71c1c}.pb-ok{background:var(--n2);color:var(--n8)}
+.pk{font-size:9px;font-weight:700;color:var(--muted)}
 
-/* ── B&A TAB ── */
-.ba-wrap{max-width:1180px;margin:0 auto;padding:24px 20px 60px}
-.ba-hdr{background:var(--n8);border-radius:12px;padding:26px 34px;margin-bottom:22px}
-.ba-tag{display:inline-block;font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--n4);background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);padding:3px 12px;border-radius:14px;margin-bottom:10px}
-.ba-hdr h2{font-size:24px;font-weight:700;color:#fff;margin-bottom:6px}
-.ba-hdr h2 em{font-style:italic;color:var(--cy)}
-.ba-hdr p{font-size:13px;color:rgba(255,255,255,.65);max-width:660px}
-.ba-meta{margin-top:12px;display:flex;gap:18px;flex-wrap:wrap}
-.ba-meta span{font-size:11px;color:rgba(255,255,255,.4)}.ba-meta strong{color:rgba(255,255,255,.65)}
-
-/* KPI before-after strip */
-.ba-kpi-strip{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:20px}
-.bkc{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:18px;position:relative;overflow:hidden}
+/* BA COMPARE CARDS */
+.ba-kpi-strip{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.bkc{background:#fff;border:1px solid var(--border);border-radius:10px;padding:16px;position:relative;overflow:hidden}
 .bkc::before{content:'';position:absolute;top:0;left:0;right:0;height:4px}
 .bkc.bk1::before{background:var(--r6)}.bkc.bk2::before{background:var(--n7)}.bkc.bk3::before{background:var(--am)}
-.bk-num{font-size:9px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:4px}
-.bk-name{font-size:13px;font-weight:600;color:var(--n9);margin-bottom:8px}
+.bk-num{font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:3px}
+.bk-name{font-size:12px;font-weight:700;color:var(--n8);margin-bottom:6px}
 .bk-formula{font-size:9px;color:var(--muted);font-style:italic;background:var(--n1);border-radius:5px;padding:5px 8px;margin-bottom:10px;line-height:1.5}
-.bk-row{display:flex;align-items:flex-end;justify-content:space-between;gap:10px}
-.bk-col{flex:1}
-.bk-lbl{font-size:9px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;margin-bottom:3px}
+.bk-row{display:flex;align-items:flex-end;justify-content:space-between;gap:8px}
+.bk-col{flex:1}.bk-lbl{font-size:8.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;margin-bottom:3px}
 .col-b .bk-lbl{color:var(--r6)}.col-a .bk-lbl{color:var(--n7)}
-.bk-big{font-size:26px;font-weight:700;line-height:1}
+.bk-big{font-size:22px;font-weight:700;line-height:1}
 .col-b .bk-big{color:var(--r6)}.col-a .bk-big{color:var(--n7)}
-.bk-unit{font-size:12px;font-weight:400;color:var(--muted);margin-left:2px}
+.bk-unit{font-size:11px;font-weight:400;color:var(--muted);margin-left:2px}
 .bk-arrow{font-size:16px;color:var(--n5);align-self:center}
-.bk-note{margin-top:10px;border-radius:6px;padding:5px 8px;font-size:10px;font-weight:600}
-.bk-bad{background:var(--r1);color:var(--r6)}.bk-ok{background:var(--n2);color:var(--n7)}.bk-warn{background:var(--am1);color:#8a4a00}
+.bk-note{margin-top:8px;border-radius:6px;padding:4px 8px;font-size:9.5px;font-weight:600}
+.bn-bad{background:var(--r1);color:var(--r6)}.bn-ok{background:var(--n2);color:var(--n7)}.bn-warn{background:var(--am1);color:#8a4a00}
 
-/* BA section */
-.ba-sec{margin-bottom:36px;border-top:1px solid var(--border);padding-top:28px}
-.ba-sec:first-child{border-top:none;padding-top:0}
-.ba-sl{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--n6);margin-bottom:5px}
-.ba-st{font-size:22px;font-weight:700;color:var(--n9);margin-bottom:5px}
-.ba-sd{font-size:13px;color:var(--muted);margin-bottom:16px;max-width:660px}
-.narr{background:var(--n1);border-left:3px solid var(--n6);border-radius:0 8px 8px 0;padding:13px 18px;font-size:13px;color:var(--n8);margin-bottom:16px;line-height:1.8}
-.narr strong{color:var(--n9)}
+/* CHAIN CLARIFICATION BOX */
+.clarify-box{background:var(--am1);border:1px solid var(--am);border-radius:10px;padding:12px 16px}
+.clarify-title{font-size:11px;font-weight:700;color:#8a4a00;margin-bottom:6px}
+.clarify-body{font-size:10px;color:#8a4a00;line-height:1.7}
 
-.ba-pair{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px}
-.ba-cc{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:16px 18px}
-.ba-pill{display:inline-block;font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:2px 9px;border-radius:14px;margin-bottom:8px}
-.pill-b{background:var(--r1);color:var(--r6);border:1px solid var(--r2)}
-.pill-a{background:var(--n2);color:var(--n7);border:1px solid var(--border)}
-.ba-ct{font-size:12px;font-weight:600;color:var(--n9);margin-bottom:2px}
-.ba-cs{font-size:10px;color:var(--muted);margin-bottom:10px}
-.ins{font-size:11px;color:var(--n8);line-height:1.7;background:var(--n1);border-radius:6px;padding:8px 12px;margin-top:8px;border-left:2px solid var(--n5)}
+/* INSIGHT BOX */
+.ins{font-size:10px;color:var(--n8);line-height:1.7;background:var(--n1);border-radius:6px;padding:8px 12px;margin-top:8px;border-left:2px solid var(--n5)}
 
-/* process table */
-.ptbl{width:100%;border-collapse:collapse;font-size:12px;margin-bottom:20px}
-.ptbl th{text-align:left;padding:9px 12px;background:var(--n8);color:#fff;font-size:10px;font-weight:600;letter-spacing:.06em;text-transform:uppercase}
-.ptbl th:first-child{border-radius:6px 0 0 0}.ptbl th:last-child{border-radius:0 6px 0 0}
-.ptbl td{padding:9px 12px;border-bottom:1px solid var(--border);color:var(--n8);vertical-align:top}
-.ptbl tr:last-child td{border-bottom:none}.ptbl tr:nth-child(even) td{background:var(--n1)}
-.td-b{color:var(--r6);font-weight:500}.td-a{color:var(--n7);font-weight:500}
+/* CONCLUSION */
+.concl{background:var(--n8);border-radius:10px;padding:22px 28px;color:#fff}
+.concl h3{font-size:18px;font-weight:700;margin-bottom:8px}
+.concl p{font-size:12px;color:rgba(255,255,255,.75);line-height:1.8;margin-bottom:8px}
+.cg{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:14px}
+.cg-b{background:rgba(255,255,255,.08);border-radius:8px;padding:12px}
+.cg-v{font-size:18px;font-weight:700;color:var(--n4)}.cg-l{font-size:10px;color:rgba(255,255,255,.5);margin-top:2px}
 
-/* conclusion */
-.concl{background:var(--n8);border-radius:10px;padding:26px 30px;color:#fff}
-.concl h3{font-size:19px;font-weight:700;margin-bottom:10px}
-.concl p{font-size:13px;color:rgba(255,255,255,.75);line-height:1.8;margin-bottom:10px}
-.cg{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:18px}
-.cg-b{background:rgba(255,255,255,.08);border-radius:8px;padding:14px}
-.cg-v{font-size:20px;font-weight:700;color:var(--n4)}.cg-l{font-size:11px;color:rgba(255,255,255,.5);margin-top:3px}
-
-.leg{display:flex;gap:10px;margin-top:8px;flex-wrap:wrap}
-.li{display:flex;align-items:center;gap:5px;font-size:10px;color:var(--muted)}
-.ld{width:10px;height:10px;border-radius:2px;flex-shrink:0}
-
-.foot{text-align:center;padding:12px;font-size:10px;color:var(--muted);background:var(--card);border-top:1px solid var(--border)}
+.foot{text-align:center;padding:10px;font-size:10px;color:var(--muted);background:#fff;border-top:1px solid var(--border)}
 </style>
 </head>
 <body>
@@ -166,641 +115,462 @@ body{font-family:'Segoe UI',Arial,sans-serif;background:var(--bg);color:var(--n8
 <div class="topbar">
   <div class="tp-mid">
     <div class="logo">FLASH<span>RIDE</span></div>
-    <div class="tp-divider"></div>
-    <div class="tp-title">Fleet Availability &amp; Operations Analytics</div>
+    <div class="tp-div"></div>
+    <div class="tp-title">Fleet Availability and Operations Analytics</div>
   </div>
   <div class="tp-right">
-    <div class="live"></div>
+    <div class="hlinks">
+      <a href="https://yaswanth6300.github.io/analysis/" class="hlink hlink-blue" target="_blank">📊 Dashboard</a>
+      <a href="https://yaswanth6300.github.io/MRP_DASHBOARD/" class="hlink hlink-out" target="_blank">⚡ Solution Prototype</a>
+    </div>
+    <div class="tp-div"></div>
+    <div class="ldot"></div>
     <div class="dtag">1,500 Records · Jan 2026 · IS 5960 SLU</div>
   </div>
 </div>
 
 <!-- TABS -->
 <div class="tabbar">
-  <button class="tab active" onclick="sw('before',this)">📊 Before Dashboard <span class="tab-badge tb-bad">AS-IS</span></button>
-  <button class="tab" onclick="sw('after',this)">✅ After Dashboard <span class="tab-badge tb-ok">TO-BE</span></button>
-  <button class="tab" onclick="sw('ba',this)">🔄 Before &amp; After Analysis <span class="tab-badge tb-cmp">Comparison</span></button>
+  <button class="tab active" onclick="sw('before',this)">📊 Before Dashboard <span class="tbadge tb-bad">AS-IS</span></button>
+  <button class="tab" onclick="sw('after',this)">✅ After Dashboard <span class="tbadge tb-ok">TO-BE</span></button>
+  <button class="tab" onclick="sw('ba',this)">🔄 Before and After Analysis <span class="tbadge tb-cmp">Comparison</span></button>
 </div>
 
-<!-- ══════════ TAB 1 — BEFORE ══════════ -->
+<!-- ═══════════════════════════════════════════════════
+     TAB 1 — BEFORE DASHBOARD (AS-IS)
+═══════════════════════════════════════════════════ -->
 <div class="page active" id="pg-before">
 <div class="dash">
 
-  <!-- 6 KPI CARDS — seamless strip -->
+  <!-- 6 KPI CARDS -->
   <div class="kpi6">
-    <div class="kc ktotal">
-      <div class="kl">Total Vehicles</div>
-      <div class="kv" style="color:var(--n7)">1,500</div>
-      <div class="ks">Vt — full fleet · 15 zones</div>
-      <span class="kb kb-b">Jan 2026 dataset</span>
-    </div>
-    <div class="kc kavail">
-      <div class="kl">Available (Va)</div>
-      <div class="kv" style="color:var(--n7)">422</div>
-      <div class="ks">Status='Available' AND Batt ≥ 20%</div>
-      <span class="kb kb-b">KPI 1 numerator</span>
-    </div>
-    <div class="kc kunavail">
-      <div class="kl">Unavailable</div>
-      <div class="kv" style="color:var(--r6)">1,078</div>
-      <div class="ks">Vt − Va = 1,500 − 422</div>
-      <span class="kb kb-r">⚠ 71.9% of fleet</span>
-    </div>
-    <div class="kc kfar-bad">
-      <div class="kl">KPI 1 — FAR</div>
-      <div class="kv" style="color:var(--r6)">28.1<span style="font-size:14px;font-weight:400;color:var(--muted)">%</span></div>
-      <div class="ks">Va/Vt×100 · Target ≥ 95%</div>
-      <span class="kb kb-r">⚠ Below target</span>
-    </div>
-    <div class="kc kart">
-      <div class="kl">KPI 2 — ART</div>
-      <div class="kv" style="color:var(--n7)">18.1<span style="font-size:14px;font-weight:400;color:var(--muted)"> min</span></div>
-      <div class="ks">Σ Search_Time/N · Target ≤ 30 min</div>
-      <span class="kb kb-b">✓ Within target</span>
-    </div>
-    <div class="kc kacr-bad">
-      <div class="kl">KPI 3 — ACR</div>
-      <div class="kv" style="color:var(--am)">3.83<span style="font-size:14px;font-weight:400;color:var(--muted)">★</span></div>
-      <div class="ks">Σ Rating/N · Target ≥ 4.2★</div>
-      <span class="kb kb-a">⚠ Below target</span>
-    </div>
+    <div class="kc ok"><div class="kl">Total Vehicles (Vt)</div><div class="kv" style="color:var(--n7)">1,500</div><div class="ks">Full fleet · 15 zones · Riverton</div><span class="kb kb-b">Jan 2026</span></div>
+    <div class="kc ok"><div class="kl">Available (Va)</div><div class="kv" style="color:var(--n7)">422</div><div class="ks">Status=Available AND Batt≥20%</div><span class="kb kb-b">KPI 1 numerator</span></div>
+    <div class="kc bad"><div class="kl">Unavailable</div><div class="kv" style="color:var(--r6)">1,078</div><div class="ks">Vt−Va = 1,500−422</div><span class="kb kb-r">⚠ 71.9% of fleet</span></div>
+    <div class="kc bad"><div class="kl">KPI 1 — FAR</div><div class="kv" style="color:var(--r6)">28.1<span style="font-size:12px;color:var(--muted)">%</span></div><div class="ks">Va/Vt×100 · Target ≥95%</div><span class="kb kb-r">⚠ Below target</span></div>
+    <div class="kc ok"><div class="kl">KPI 2 — ART</div><div class="kv" style="color:var(--n7)">18.1<span style="font-size:12px;color:var(--muted)"> min</span></div><div class="ks">Σ Search_Time/N · Target ≤30 min</div><span class="kb kb-b">✓ Within target</span></div>
+    <div class="kc warn"><div class="kl">KPI 3 — ACR</div><div class="kv" style="color:var(--am)">3.83<span style="font-size:12px;color:var(--muted)">★</span></div><div class="ks">Σ Rating/N · Target ≥4.2★</div><span class="kb kb-a">⚠ Below target</span></div>
   </div>
 
-  <!-- MAIN CHART (large, left) + DOWNTIME -->
-  <div style="display:grid;grid-template-columns:2fr 1fr;gap:14px">
+  <!-- GRAPH 1: FAR by zone (LARGE) + GRAPH 2: Downtime -->
+  <div class="top-row">
     <div class="cc">
-      <div class="ct">KPI 1 — Fleet Availability Rate by zone · Target: 95%</div>
-      <div class="cs">FAR per Zone_ID · Red bars = below 25% critical · Dashed = 95% target · All 15 zones below target</div>
-      <div style="height:260px;position:relative"><canvas id="b-far"></canvas></div>
+      <div class="ct">Graph 1 — KPI 1: Fleet Availability Rate (FAR %) by zone</div>
+      <div class="cs">FAR = Va/Vt×100 per zone · Red bars = below 25% (critical) · Dashed = 95% target · All 15 zones below target · Driven by Battery_Pct_Before_Service column</div>
+      <div style="height:260px;position:relative"><canvas id="b-g1"></canvas></div>
     </div>
     <div class="cc">
-      <div class="ct">Fleet downtime by cause</div>
-      <div class="cs">Defines unavailability · Low battery = largest fixable cause</div>
-      <div style="height:260px;position:relative"><canvas id="b-downtime"></canvas></div>
+      <div class="ct">Graph 2 — Fleet downtime by cause</div>
+      <div class="cs">What makes Vt−Va=1,078 unavailable · Low Battery 32.3% = largest fixable cause · Driven by Vehicle_Status + Battery_Pct columns</div>
+      <div style="height:260px;position:relative"><canvas id="b-g2"></canvas></div>
     </div>
   </div>
 
   <!-- 6 PROCESS CARDS -->
-  <div style="font-size:11px;font-weight:700;color:var(--n8);margin-bottom:-4px">6 key operational failures — AS-IS state</div>
-  <div class="proc-grid">
-    <div class="pc"><div class="pc-icon">🔋</div><div class="pc-title">Battery detection</div><div class="pc-state pc-bad">484 vehicles fail silently per month. No automated monitoring. Discovered only by riders or manual checks.</div><div class="pc-kpi">→ KPI 1 (FAR): 28.1% — 32.3% downtime from low battery</div></div>
-    <div class="pc"><div class="pc-icon">📱</div><div class="pc-title">Task assignment</div><div class="pc-state pc-bad">Manager sends WhatsApp message. Technician volunteers. 20 to 40 min delay before dispatch begins. No structure.</div><div class="pc-kpi">→ KPI 2 (ART): +25 min per event from manual coordination</div></div>
-    <div class="pc"><div class="pc-icon">👻</div><div class="pc-title">Vehicle location</div><div class="pc-state pc-bad">127 ghost vehicles with GPS drift above 10m. Technicians search 28 to 60 min per incident, dispatched blind.</div><div class="pc-kpi">→ KPI 2 (ART): ghost vehicles average 42 min search time</div></div>
-    <div class="pc"><div class="pc-icon">⭐</div><div class="pc-title">Customer experience</div><div class="pc-state pc-bad">Riders encounter low-battery vehicles. Fleet ACR = 3.83★. Low-battery vehicles rated 3.51★ vs 3.98★ normal.</div><div class="pc-kpi">→ KPI 3 (ACR): 3.83★ — 0.37★ below 4.2★ target</div></div>
-    <div class="pc"><div class="pc-icon">📋</div><div class="pc-title">Compliance reporting</div><div class="pc-state pc-bad">Manual spreadsheets. Days-old data. 5 of 7 equity zones below city minimum. Coverage: 67% vs 80% target.</div><div class="pc-kpi">→ KPI 1: ADA compliance gaps invisible and unactioned</div></div>
-    <div class="pc"><div class="pc-icon">🗺️</div><div class="pc-title">Zone rebalancing</div><div class="pc-state pc-bad">No supply-demand visibility. Downtown: 463 vehicles, 68% high demand. Campus: 528 vehicles, 42% demand.</div><div class="pc-kpi">→ KPI 1, 3: mismatch causes low availability and low ratings</div></div>
+  <div style="font-size:10px;font-weight:700;color:var(--n8);letter-spacing:.8px;text-transform:uppercase">6 Operational Processes — AS-IS (broken state)</div>
+  <div class="proc6">
+    <div class="pc"><div class="pi">🔋</div><div class="pt">Battery detection</div><div class="pb pb-bad">484 vehicles fail silently per month. No automated alert. Rider discovers dead scooter.</div><div class="pk">→ KPI 1 FAR 28.1% · Root column: Battery_Pct_Before_Service</div></div>
+    <div class="pc"><div class="pi">📱</div><div class="pt">Task assignment</div><div class="pb pb-bad">WhatsApp coordination. 20–40 min delay before technician moves toward vehicle.</div><div class="pk">→ Response chain +25 min · Not KPI 2 itself</div></div>
+    <div class="pc"><div class="pi">👻</div><div class="pt">Vehicle location</div><div class="pb pb-bad">127 ghost vehicles. GPS drift above 10m. Technician search time: 42 min average.</div><div class="pk">→ KPI 2 ART 18.1 min · Root column: GPS_Drift_Meters</div></div>
+    <div class="pc"><div class="pi">⭐</div><div class="pt">Customer experience</div><div class="pb pb-bad">Low-battery vehicles rated 3.51★ vs 3.98★ for normal. KPI 1 drives KPI 3.</div><div class="pk">→ KPI 3 ACR 3.83★ · Root column: Low_Battery_Flag→Customer_Rating</div></div>
+    <div class="pc"><div class="pi">📋</div><div class="pt">Compliance reporting</div><div class="pb pb-bad">Manual spreadsheets. 5 of 7 equity zones below city minimum. Coverage: 67%.</div><div class="pk">→ KPI 1 · Column: Equity_Zone + Zone vehicle count</div></div>
+    <div class="pc"><div class="pi">🗺️</div><div class="pt">Zone rebalancing</div><div class="pb pb-bad">No supply-demand visibility. Downtown: 463 vehicles, 68% demand. Campus: 528, 42% demand.</div><div class="pk">→ KPI 1, 3 · Column: Zone_ID + Demand_Level</div></div>
   </div>
 
-  <!-- KPI 2 + KPI 3 by zone -->
+  <!-- GRAPH 3: ART + GRAPH 4: ACR -->
   <div class="row2">
     <div class="cc">
-      <div class="ct">KPI 2 — Avg technician search time by zone · Target: 30 min</div>
-      <div class="cs">Technician_Search_Time per zone · Z08 at 26.2 min approaching ceiling · Red = at risk</div>
-      <div style="height:200px;position:relative"><canvas id="b-art"></canvas></div>
+      <div class="ct">Graph 3 — KPI 2: Avg technician search time by zone</div>
+      <div class="cs">ART = Σ Technician_Search_Time/N per zone · Dashed = 30 min target · Z08 at 26.2 min approaching ceiling · Driven by GPS_Drift_Meters column</div>
+      <div style="height:200px;position:relative"><canvas id="b-g3"></canvas></div>
     </div>
     <div class="cc">
-      <div class="ct">KPI 3 — Customer rating by zone · Target: 4.2★</div>
-      <div class="cs">Customer_Rating per Zone_ID · Red = below target · Z12 lowest at 3.31★</div>
-      <div style="height:200px;position:relative"><canvas id="b-acr"></canvas></div>
-    </div>
-  </div>
-
-  <div class="row2">
-    <div class="cc">
-      <div class="ct">KPI 3 — Rating by battery level (key insight)</div>
-      <div class="cs">Low-battery vehicles (Batt &lt;20%) rated 3.51★ vs 3.98★ — 12% penalty · Fixing KPI 1 fixes KPI 3</div>
-      <div style="height:190px;position:relative"><canvas id="b-batt"></canvas></div>
-    </div>
-    <div class="cc">
-      <div class="ct">GPS drift and ghost vehicles by zone</div>
-      <div class="cs">Bars = ghost vehicle count · Line = avg GPS_Drift_Meters · Drift &gt;10m inflates KPI 2</div>
-      <div style="height:190px;position:relative"><canvas id="b-gps"></canvas></div>
+      <div class="ct">Graph 4 — KPI 3: Customer rating by zone</div>
+      <div class="cs">ACR = Σ Customer_Rating/N per zone · Dashed = 4.2★ target · Zones with worst FAR also have worst ACR · Driven by Customer_Rating column</div>
+      <div style="height:200px;position:relative"><canvas id="b-g4"></canvas></div>
     </div>
   </div>
 
+  <!-- GRAPH 5: Battery rating + GRAPH 6: GPS drift -->
   <div class="row2">
     <div class="cc">
-      <div class="ct">Dispatch mode — System vs Manual</div>
-      <div class="cs">System auto-dispatch (61%) vs Manual WhatsApp (39%) · Manual adds 25 min per event to KPI 2</div>
-      <div style="height:180px;position:relative"><canvas id="b-dispatch"></canvas></div>
+      <div class="ct">Graph 5 — KPI 3: Customer rating by battery level (key insight)</div>
+      <div class="cs">Low_Battery_Flag=1 vehicles rate 3.51★ vs 3.98★ for normal · 12% penalty · This proves: fixing KPI 1 (FAR) directly fixes KPI 3 (ACR) · Column: Low_Battery_Flag → Customer_Rating</div>
+      <div style="height:190px;position:relative"><canvas id="b-g5"></canvas></div>
     </div>
-    <div class="cc" style="background:var(--n1);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;flex-direction:column;gap:8px">
-      <div style="font-size:13px;font-weight:700;color:var(--n8)">Total fleet downtime breakdown</div>
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;width:100%">
-        <div style="background:var(--r1);border-radius:8px;padding:10px 14px;text-align:center"><div style="font-size:20px;font-weight:800;color:var(--r6)">484</div><div style="font-size:10px;color:var(--muted)">Low Battery events</div></div>
-        <div style="background:var(--n2);border-radius:8px;padding:10px 14px;text-align:center"><div style="font-size:20px;font-weight:800;color:var(--n7)">127</div><div style="font-size:10px;color:var(--muted)">Ghost Vehicles</div></div>
-        <div style="background:var(--n2);border-radius:8px;padding:10px 14px;text-align:center"><div style="font-size:20px;font-weight:800;color:var(--n7)">332</div><div style="font-size:10px;color:var(--muted)">Damaged vehicles</div></div>
-        <div style="background:var(--n2);border-radius:8px;padding:10px 14px;text-align:center"><div style="font-size:20px;font-weight:800;color:var(--n7)">120</div><div style="font-size:10px;color:var(--muted)">GPS issues</div></div>
-      </div>
+    <div class="cc">
+      <div class="ct">Graph 6 — GPS drift and ghost vehicles by zone</div>
+      <div class="cs">Bars = ghost vehicle count · Line = avg GPS_Drift_Meters · Drift above 10m creates ghost vehicles · Inflates KPI 2 · Column: GPS_Drift_Meters</div>
+      <div style="height:190px;position:relative"><canvas id="b-g6"></canvas></div>
     </div>
   </div>
 
 </div>
 </div>
 
+<!-- ═══════════════════════════════════════════════════
+     TAB 2 — AFTER DASHBOARD (TO-BE)
+═══════════════════════════════════════════════════ -->
 <div class="page" id="pg-after">
 <div class="dash">
 
-  <!-- 5 KPI CARDS — AFTER -->
-  <div class="kpi5">
-    <div class="kc ktotal">
-      <div class="kl">Total Vehicles</div>
-      <div class="kv" style="color:var(--n7)">1,500</div>
-      <div class="ks">Vt — same fleet<br>15 zones · Riverton</div>
-      <span class="kb kb-b">Projected TO-BE</span>
-    </div>
-    <div class="kc kavail">
-      <div class="kl">Available (Va)</div>
-      <div class="kv" style="color:var(--n7)">≥1,425</div>
-      <div class="ks">Auto-mission trigger catches<br>all battery events</div>
-      <span class="kb kb-b">✓ ≥95% of fleet</span>
-    </div>
-    <div class="kc kavail">
-      <div class="kl">Unavailable</div>
-      <div class="kv" style="color:var(--n7)">≤75</div>
-      <div class="ks">Only damaged + edge cases<br>From 1,078 → ≤75</div>
-      <span class="kb kb-b">✓ Major reduction</span>
-    </div>
-    <div class="kc kfar-ok">
-      <div class="kl">KPI 1 — FAR</div>
-      <div class="kv" style="color:var(--n7)">≥95<span style="font-size:14px;font-weight:400;color:var(--muted)">%</span></div>
-      <div class="ks">Auto-mission trigger<br>eliminates battery downtime</div>
-      <span class="kb kb-b">✓ Target met</span>
-    </div>
-    <div class="kc kart">
-      <div class="kl">KPI 2 — ART</div>
-      <div class="kv" style="color:var(--n7)">&lt;20<span style="font-size:14px;font-weight:400;color:var(--muted)"> min</span></div>
-      <div class="ks">GPS flagging reduces<br>ghost vehicle search 40%</div>
-      <span class="kb kb-b">✓ Within target</span>
-    </div>
+  <!-- 6 KPI CARDS — AFTER (same cards, different numbers) -->
+  <div class="kpi6">
+    <div class="kc ok"><div class="kl">Total Vehicles (Vt)</div><div class="kv" style="color:var(--n7)">1,500</div><div class="ks">Same fleet · Same 15 zones</div><span class="kb kb-b">Projected TO-BE</span></div>
+    <div class="kc grn"><div class="kl">Available (Va)</div><div class="kv" style="color:var(--g7)">≥1,425</div><div class="ks">Auto-mission catches all battery events</div><span class="kb kb-g">✓ From 422 to 1,425+</span></div>
+    <div class="kc grn"><div class="kl">Unavailable</div><div class="kv" style="color:var(--g7)">≤75</div><div class="ks">Only damaged + edge cases remain</div><span class="kb kb-g">✓ From 1,078 to ≤75</span></div>
+    <div class="kc grn"><div class="kl">KPI 1 — FAR</div><div class="kv" style="color:var(--g7)">≥95<span style="font-size:12px;color:var(--muted)">%</span></div><div class="ks">Battery downtime eliminated · Target met</div><span class="kb kb-g">✓ Target met</span></div>
+    <div class="kc grn"><div class="kl">KPI 2 — ART</div><div class="kv" style="color:var(--g7)">~14<span style="font-size:12px;color:var(--muted)"> min</span></div><div class="ks">GPS flagging · Ghost search 42→25 min</div><span class="kb kb-g">✓ Improved from 18.1</span></div>
+    <div class="kc grn"><div class="kl">KPI 3 — ACR</div><div class="kv" style="color:var(--g7)">4.21<span style="font-size:12px;color:var(--muted)">★</span></div><div class="ks">Low-batt encounters eliminated · Target met</div><span class="kb kb-g">✓ Target met</span></div>
   </div>
-  <!-- ACR after row -->
-  <div style="display:grid;grid-template-columns:2fr 1fr 1fr;gap:14px;align-items:start">
-    <!-- MAIN CHART: FAR after -->
-    <div class="cc" style="grid-row:span 2">
-      <div class="ct">KPI 1 — Fleet Availability Rate by zone — After &nbsp;·&nbsp; Target: 95%</div>
-      <div class="cs">Projected FAR after auto-mission trigger · Before (faded red) vs After (blue) · All zones approach 95%</div>
-      <div style="height:280px;position:relative"><canvas id="a-far"></canvas></div>
-    </div>
-    <!-- Downtime after -->
+
+  <!-- GRAPH 1 AFTER: FAR by zone -->
+  <div class="top-row">
     <div class="cc">
-      <div class="ct">Fleet downtime by cause — After</div>
-      <div class="cs">Low battery drops to 0% · All 484 monthly events auto-caught</div>
-      <div style="height:180px;position:relative"><canvas id="a-downtime"></canvas></div>
+      <div class="ct">Graph 1 — KPI 1: Fleet Availability Rate (FAR %) by zone — After solution</div>
+      <div class="cs">Same chart · Same 15 zones · Different numbers · Auto-mission trigger catches all 484 battery events · All zones reach or exceed 95% target · Faded red = before, blue = after</div>
+      <div style="height:260px;position:relative"><canvas id="a-g1"></canvas></div>
     </div>
-    <!-- ACR after KPI card -->
-    <div class="kc kacr-ok" style="height:fit-content">
-      <div class="kl">KPI 3 — ACR</div>
-      <div class="kv" style="color:var(--n7)">4.21<span style="font-size:14px;font-weight:400;color:var(--muted)">★</span></div>
-      <div class="ks">Low-battery encounters<br>eliminated · Target ≥ 4.2★</div>
-      <span class="kb kb-b">✓ Target met</span>
-    </div>
-    <!-- ART after -->
-    <div class="cc" style="grid-column:2/span 2">
-      <div class="ct">KPI 2 — Avg technician search time — After &nbsp;·&nbsp; Target: 30 min</div>
-      <div class="cs">Before (faded) vs After · GPS flagging before dispatch · All zones well within 30 min target</div>
-      <div style="height:160px;position:relative"><canvas id="a-art"></canvas></div>
+    <div class="cc">
+      <div class="ct">Graph 2 — Fleet downtime by cause — After solution</div>
+      <div class="cs">Same chart · Different numbers · Low Battery slice drops to 0% · All 484 monthly events auto-caught before riders encounter them · Battery_Pct monitoring active</div>
+      <div style="height:260px;position:relative"><canvas id="a-g2"></canvas></div>
     </div>
   </div>
 
-  <!-- 6 PROCESS CARDS — FIXED -->
-  <div style="font-size:11px;font-weight:700;color:var(--n8);margin-bottom:-4px">6 key processes — TO-BE state after solution</div>
-  <div class="proc-grid">
-    <div class="pc ok-proc">
-      <div class="pc-icon">⚡</div>
-      <div class="pc-title">Battery detection</div>
-      <div class="pc-state pc-good">Battery_Pct &lt;20% triggers auto-mission in &lt;30 seconds. All 484 monthly events caught before any rider encounter.</div>
-      <div class="pc-kpi">→ KPI 1 (FAR): 28.1% → ≥95%</div>
-    </div>
-    <div class="pc ok-proc">
-      <div class="pc-icon">📋</div>
-      <div class="pc-title">Task assignment</div>
-      <div class="pc-state pc-good">System auto-assigns nearest technician instantly. Mission pushed to app. Assignment time: 25 min → &lt;30 seconds.</div>
-      <div class="pc-kpi">→ KPI 2 (ART): response chain 130 → 19 min</div>
-    </div>
-    <div class="pc ok-proc">
-      <div class="pc-icon">📍</div>
-      <div class="pc-title">Vehicle location</div>
-      <div class="pc-state pc-good">GPS_Drift_Meters shown before dispatch. High-drift vehicles flagged red. Ghost vehicle search: 42 → 25 min (−40%).</div>
-      <div class="pc-kpi">→ KPI 2 (ART): within 30 min in all zones</div>
-    </div>
-    <div class="pc ok-proc">
-      <div class="pc-icon">⭐</div>
-      <div class="pc-title">Customer experience</div>
-      <div class="pc-state pc-good">Battery issues resolved before any rider encounter. Vehicles at 90%+ charge when ridden. Fleet ACR rises to 4.21★.</div>
-      <div class="pc-kpi">→ KPI 3 (ACR): 3.83★ → 4.21★ (crosses 4.2★ target)</div>
-    </div>
-    <div class="pc ok-proc">
-      <div class="pc-icon">✅</div>
-      <div class="pc-title">Compliance reporting</div>
-      <div class="pc-state pc-good">City Compliance Portal shows live equity zone coverage. Gaps flagged as Urgent and auto-queued. Coverage: 67% → 80%+.</div>
-      <div class="pc-kpi">→ KPI 1: ADA compliance gaps actioned in real time</div>
-    </div>
-    <div class="pc ok-proc">
-      <div class="pc-icon">🗺️</div>
-      <div class="pc-title">Zone rebalancing</div>
-      <div class="pc-state pc-good">Vehicle count vs demand % shown per zone. Downtown gap (463 vehicles, 68% demand) now visible and prioritized.</div>
-      <div class="pc-kpi">→ KPI 1, 3: supply matched to demand across all 15 zones</div>
-    </div>
+  <!-- 6 PROCESS CARDS — AFTER (fixed state) -->
+  <div style="font-size:10px;font-weight:700;color:var(--n8);letter-spacing:.8px;text-transform:uppercase">6 Operational Processes — TO-BE (fixed state)</div>
+  <div class="proc6">
+    <div class="pc ok"><div class="pi">⚡</div><div class="pt">Battery detection</div><div class="pb pb-ok">Battery_Pct below 20% auto-triggers mission in under 30 seconds. 484 monthly events caught.</div><div class="pk">→ KPI 1 FAR: 28.1% → ≥95%</div></div>
+    <div class="pc ok"><div class="pi">📋</div><div class="pt">Task assignment</div><div class="pb pb-ok">System auto-assigns nearest technician instantly. Assignment: 25 min → under 30 seconds.</div><div class="pk">→ Response chain: 130 → 19 min total</div></div>
+    <div class="pc ok"><div class="pi">📍</div><div class="pt">Vehicle location</div><div class="pb pb-ok">GPS_Drift_Meters shown per vehicle before dispatch. High-drift flagged red. Ghost search: 42 → 25 min.</div><div class="pk">→ KPI 2 ART: 18.1 → ~14 min</div></div>
+    <div class="pc ok"><div class="pi">⭐</div><div class="pt">Customer experience</div><div class="pb pb-ok">Battery issues caught before rider encounter. Low-battery events eliminated. Fleet ACR rises to 4.21★.</div><div class="pk">→ KPI 3 ACR: 3.83★ → 4.21★</div></div>
+    <div class="pc ok"><div class="pi">✅</div><div class="pt">Compliance reporting</div><div class="pb pb-ok">City Compliance Portal shows live equity zone coverage. Urgent flags for zones below minimum. Coverage: 67% → 80%+.</div><div class="pk">→ KPI 1: ADA compliance maintained</div></div>
+    <div class="pc ok"><div class="pi">🗺️</div><div class="pt">Zone rebalancing</div><div class="pb pb-ok">Vehicle count vs demand % visible per zone. Downtown gap (463 vehicles, 68% demand) flagged and actioned.</div><div class="pk">→ KPI 1, 3: supply matched to demand</div></div>
   </div>
 
-  <!-- Secondary charts after -->
+  <!-- GRAPH 3 + 4 AFTER -->
   <div class="row2">
     <div class="cc">
-      <div class="ct">Response chain: Before vs After (minutes per step)</div>
-      <div class="cs">Total: ~130 min → ~19 min · Detection and assignment fully automated</div>
-      <div style="height:200px;position:relative"><canvas id="a-chain"></canvas></div>
+      <div class="ct">Graph 3 — KPI 2: Avg technician search time by zone — After solution</div>
+      <div class="cs">Same chart · Same zones · Different numbers · GPS flagging before dispatch reduces ghost vehicle search 42→25 min · All zones well under 30 min target · KPI 2: 18.1 → ~14 min</div>
+      <div style="height:200px;position:relative"><canvas id="a-g3"></canvas></div>
     </div>
     <div class="cc">
-      <div class="ct">Equity zone coverage — After compliance portal</div>
-      <div class="cs">All 7 equity zones reach or exceed city minimum · Coverage 67% → 80%+</div>
-      <div style="height:200px;position:relative"><canvas id="a-equity"></canvas></div>
+      <div class="ct">Graph 4 — KPI 3: Customer rating by zone — After solution</div>
+      <div class="cs">Same chart · Same zones · Different numbers · Eliminating low-battery encounters raises every zone above 4.2★ target · KPI 3: 3.83★ → 4.21★</div>
+      <div style="height:200px;position:relative"><canvas id="a-g4"></canvas></div>
     </div>
   </div>
+
+  <!-- GRAPH 5 + 6 AFTER -->
+  <div class="row2">
+    <div class="cc">
+      <div class="ct">Graph 5 — KPI 3: Customer rating by battery level — After solution</div>
+      <div class="cs">Same chart · Different numbers · Low-battery encounters eliminated · Only normal battery vehicles reach riders · Fleet average rises to 4.21★</div>
+      <div style="height:190px;position:relative"><canvas id="a-g5"></canvas></div>
+    </div>
+    <div class="cc">
+      <div class="ct">Graph 6 — GPS drift and ghost vehicles by zone — After solution</div>
+      <div class="cs">Same chart · Different numbers · GPS drift flagged before dispatch · Ghost vehicle search time: 42 → 25 min · KPI 2 protected across all 15 zones</div>
+      <div style="height:190px;position:relative"><canvas id="a-g6"></canvas></div>
+    </div>
+  </div>
+
 </div>
 </div>
 
-<!-- ══════════ TAB 3 — B&A ══════════ -->
+<!-- ═══════════════════════════════════════════════════
+     TAB 3 — BEFORE AND AFTER ANALYSIS
+═══════════════════════════════════════════════════ -->
 <div class="page" id="pg-ba">
-<div class="ba-wrap">
+<div class="dash">
 
-  <div class="ba-hdr">
-    <div class="ba-tag">Before and after analysis</div>
-    <h2>FlashRide: From <em>chaos</em> to control</h2>
-    <p>Every chart pairs the before state with the after state — improvement is clear and measurable through 3 KPIs computed directly from the dataset.</p>
-    <div class="ba-meta">
-      <span><strong>Dataset:</strong> 1,500 records · January 2026</span>
-      <span><strong>Fleet:</strong> 5,000 vehicles · 15 zones</span>
-      <span><strong>Course:</strong> IS 5960 · Dr. Tatiana Cardona · SLU</span>
+  <!-- KPI COMPARISON STRIP -->
+  <div class="ba-kpi-strip">
+    <div class="bkc bk1">
+      <div class="bk-num">KPI 1</div>
+      <div class="bk-name">Fleet Availability Rate (FAR)</div>
+      <div class="bk-formula">FAR = Va / Vt × 100<br>Va = Status=Available AND Battery_Pct ≥ 20<br>Vt = 1,500 total vehicles</div>
+      <div class="bk-row">
+        <div class="bk-col col-b"><div class="bk-lbl">Before (AS-IS)</div><div class="bk-big">28.1<span class="bk-unit">%</span></div><div style="font-size:9px;color:var(--muted)">Va=422/1,500</div></div>
+        <div class="bk-arrow">→</div>
+        <div class="bk-col col-a"><div class="bk-lbl">After (Target)</div><div class="bk-big">≥95<span class="bk-unit">%</span></div><div style="font-size:9px;color:var(--muted)">Va≥1,425/1,500</div></div>
+      </div>
+      <div class="bk-note bn-bad">⊗ Gap: 66.9 pts below target — primary KPI gap</div>
+    </div>
+    <div class="bkc bk2">
+      <div class="bk-num">KPI 2</div>
+      <div class="bk-name">Avg Technician Response Time (ART)</div>
+      <div class="bk-formula">ART = Σ Technician_Search_Time / N<br>N = 1,500 · Search step ONLY<br>Full chain: 130 min → 19 min (separate)</div>
+      <div class="bk-row">
+        <div class="bk-col col-b"><div class="bk-lbl">Before (AS-IS)</div><div class="bk-big">18.1<span class="bk-unit">min</span></div><div style="font-size:9px;color:var(--muted)">Ghost avg: 42 min</div></div>
+        <div class="bk-arrow">→</div>
+        <div class="bk-col col-a"><div class="bk-lbl">After (Projected)</div><div class="bk-big">~14<span class="bk-unit">min</span></div><div style="font-size:9px;color:var(--muted)">Ghost avg: 25 min</div></div>
+      </div>
+      <div class="bk-note bn-ok">✓ Improves 18.1→~14 min · Target ≤30 min · Ghost search −40%</div>
+    </div>
+    <div class="bkc bk3">
+      <div class="bk-num">KPI 3</div>
+      <div class="bk-name">Avg Customer Satisfaction Rating (ACR)</div>
+      <div class="bk-formula">ACR = Σ Customer_Rating / N<br>N = 1,500 · Scale 1–5 stars<br>Low_Battery_Flag=1 → 3.51★ · =0 → 3.98★</div>
+      <div class="bk-row">
+        <div class="bk-col col-b"><div class="bk-lbl">Before (AS-IS)</div><div class="bk-big">3.83<span class="bk-unit">★</span></div><div style="font-size:9px;color:var(--muted)">Low-batt: 3.51★</div></div>
+        <div class="bk-arrow">→</div>
+        <div class="bk-col col-a"><div class="bk-lbl">After (Projected)</div><div class="bk-big">4.21<span class="bk-unit">★</span></div><div style="font-size:9px;color:var(--muted)">Target ≥4.2★ ✓</div></div>
+      </div>
+      <div class="bk-note bn-warn">⚠ Fixes when KPI 1 fixes — same root cause</div>
     </div>
   </div>
 
-  <!-- KPI B&A strip -->
-  <div class="ba-sec">
-    <div class="ba-sl">Key performance indicators</div>
-    <div class="ba-st">The 3 KPIs — Before &amp; After</div>
-    <div class="ba-kpi-strip">
-      <div class="bkc bk1">
-        <div class="bk-num">KPI 1</div>
-        <div class="bk-name">Fleet Availability Rate (FAR)</div>
-        <div class="bk-formula">FAR = Va / Vt × 100<br>Va = Vehicle_Status='Available' AND Battery_Pct_Before_Service ≥ 20<br>Vt = 1,500 total vehicles in dataset</div>
-        <div class="bk-row">
-          <div class="bk-col col-b"><div class="bk-lbl">Before (AS-IS)</div><div class="bk-big">28.1<span class="bk-unit">%</span></div><div style="font-size:9px;color:var(--muted)">Va = 422 / 1,500</div></div>
-          <div class="bk-arrow">→</div>
-          <div class="bk-col col-a"><div class="bk-lbl">After (Target)</div><div class="bk-big">≥95<span class="bk-unit">%</span></div><div style="font-size:9px;color:var(--muted)">Va ≥ 1,425 / 1,500</div></div>
-        </div>
-        <div class="bk-note bk-bad">⊗ Gap: 66.9 pts below target — primary KPI gap</div>
-      </div>
-      <div class="bkc bk2">
-        <div class="bk-num">KPI 2</div>
-        <div class="bk-name">Avg Technician Response Time (ART)</div>
-        <div class="bk-formula">ART = Σ Technician_Search_Time / N<br>N = total maintenance events = 1,500<br>Computed across all service records</div>
-        <div class="bk-row">
-          <div class="bk-col col-b"><div class="bk-lbl">Before (AS-IS)</div><div class="bk-big">18.1<span class="bk-unit">min</span></div></div>
-          <div class="bk-arrow">→</div>
-          <div class="bk-col col-a"><div class="bk-lbl">After (Target)</div><div class="bk-big">≤30<span class="bk-unit">min</span></div></div>
-        </div>
-        <div class="bk-note bk-ok">✓ Within target — auto-dispatch keeps ART below 30 min at scale</div>
-      </div>
-      <div class="bkc bk3">
-        <div class="bk-num">KPI 3</div>
-        <div class="bk-name">Avg Customer Satisfaction Rating (ACR)</div>
-        <div class="bk-formula">ACR = Σ Customer_Rating / N<br>N = total rated rides = 1,500<br>Rating scale: 1–5 stars per completed ride</div>
-        <div class="bk-row">
-          <div class="bk-col col-b"><div class="bk-lbl">Before (AS-IS)</div><div class="bk-big">3.83<span class="bk-unit">★</span></div></div>
-          <div class="bk-arrow">→</div>
-          <div class="bk-col col-a"><div class="bk-lbl">After (Projected)</div><div class="bk-big">4.21<span class="bk-unit">★</span></div></div>
-        </div>
-        <div class="bk-note bk-warn">⚠ Gap: −0.37★ — closes when battery failures stop reaching riders</div>
-      </div>
+  <!-- GRAPH 1: FAR comparison (before vs after grouped) -->
+  <div class="top-row">
+    <div class="cc">
+      <div class="ct">Graph 1 — KPI 1: FAR before vs after · Same zones, different numbers</div>
+      <div class="cs">Red = before (AS-IS) · Blue = after (projected) · Same 15 zones · Auto-mission trigger moves every zone toward 95% · Root: Battery_Pct_Before_Service</div>
+      <div style="height:260px;position:relative"><canvas id="ba-g1"></canvas></div>
     </div>
-
-    <div class="ba-cc">
-      <div class="ba-ct">All 3 KPIs — Before vs After (normalized 0–100 scale)</div>
-      <div class="ba-cs">KPI 1 as % · KPI 2 inverted efficiency (higher=better) · KPI 3 ×20 for comparison</div>
-      <div style="height:260px;position:relative"><canvas id="bc-kpi"></canvas></div>
-      <div class="leg">
-        <span class="li"><span class="ld" style="background:#FFCDD2"></span>Before — AS-IS from dataset</span>
-        <span class="li"><span class="ld" style="background:#1565C0"></span>After — Target / Projected</span>
-      </div>
-      <div class="ins"><strong>Key insight:</strong> KPI 1 (FAR) shows the steepest improvement — 28.1% to ≥95% — driven by the auto-mission trigger. KPI 3 (ACR) rises when low-battery encounters are eliminated. <strong>Fixing KPI 1 directly fixes KPI 3.</strong></div>
+    <div class="cc">
+      <div class="ct">Graph 2 — Downtime by cause before vs after · Same categories, different numbers</div>
+      <div class="cs">Same 4 categories · Low battery (red) disappears after solution · Other unavailability, damaged, GPS issues remain · Root: Vehicle_Status + Battery_Pct</div>
+      <div style="height:260px;position:relative"><canvas id="ba-g2"></canvas></div>
     </div>
   </div>
 
-  <!-- Battery chapter -->
-  <div class="ba-sec">
-    <div class="ba-sl">Chapter 1 — Battery downtime</div>
-    <div class="ba-st">484 low-battery events eliminated every month</div>
-    <div class="narr"><strong>484 vehicles — 32.3% of all records</strong> — had Battery_Pct_Before_Service below 20%. This pulls KPI 1 (FAR) to 28.1%. After the auto-mission trigger detects the 20% threshold crossing, dispatch happens in under 30 seconds — before any rider encounter.</div>
-    <div class="ba-pair">
-      <div class="ba-cc">
-        <div class="ba-pill pill-b">Before</div>
-        <div class="ba-ct">Downtime causes — Before</div>
-        <div class="ba-cs">Low battery (32.3%) undetected — the largest fixable downtime category</div>
-        <div style="height:200px;position:relative"><canvas id="bc-dt-b"></canvas></div>
-        <div class="ins">484 vehicles failed silently every month — each discovered only when a rider encountered a dead scooter.</div>
-      </div>
-      <div class="ba-cc">
-        <div class="ba-pill pill-a">After</div>
-        <div class="ba-ct">Downtime causes — After auto-mission trigger</div>
-        <div class="ba-cs">Low battery drops to 0% — all 484 events auto-caught · KPI 1 rises to ≥95%</div>
-        <div style="height:200px;position:relative"><canvas id="bc-dt-a"></canvas></div>
-        <div class="ins">Auto-mission trigger detects Battery_Pct &lt;20% and dispatches nearest technician in &lt;30 seconds.</div>
-      </div>
-    </div>
-    <div class="ba-cc">
-      <div class="ba-ct">Response chain: Before vs After (minutes per step) — KPI 2 impact</div>
-      <div class="ba-cs">Total response time: ~130 min → ~19 min · Detection and assignment steps fully automated</div>
-      <div style="height:240px;position:relative"><canvas id="bc-chain"></canvas></div>
-      <div class="leg">
-        <span class="li"><span class="ld" style="background:#FFCDD2"></span>Before (WhatsApp manual) — Total ~130 min</span>
-        <span class="li"><span class="ld" style="background:#1565C0"></span>After (auto-mission trigger) — Total ~19 min</span>
-      </div>
+  <!-- CLARIFICATION BOX -->
+  <div class="clarify-box">
+    <div class="clarify-title">⚠ KPI 2 vs Full Response Chain — they are different things</div>
+    <div class="clarify-body">
+      <strong>KPI 2 (ART)</strong> = only the time technician takes to physically find and reach the vehicle (search step). Before: 18.1 min. After: ~14 min. Improves because GPS drift flagging cuts ghost vehicle search from 42 → 25 min.<br>
+      <strong>Full Response Chain (130 min → 19 min)</strong> = all 5 steps combined: Detect battery (40 min saved) + Assign technician (25 min saved) + Search vehicle (KPI 2 step: ~4 min saved) + Service + Update. The 85% time reduction comes from automating detection and assignment, not from KPI 2 itself.
     </div>
   </div>
 
-  <!-- GPS chapter -->
-  <div class="ba-sec">
-    <div class="ba-sl">Chapter 2 — Ghost vehicles</div>
-    <div class="ba-st">Technician search time cut by 40%</div>
-    <div class="narr"><strong>127 ghost vehicles</strong> had GPS_Drift_Meters above 10 meters, directly inflating <strong>KPI 2 (ART)</strong>. After the solution, GPS_Drift_Meters is visible per vehicle before dispatch.</div>
-    <div class="ba-pair">
-      <div class="ba-cc">
-        <div class="ba-pill pill-b">Before</div>
-        <div class="ba-ct">Avg search time by GPS drift level — Before</div>
-        <div class="ba-cs">Dispatched blind — ghost vehicles took 42 min avg, inflating KPI 2</div>
-        <div style="height:200px;position:relative"><canvas id="bc-gps-b"></canvas></div>
-        <div class="ins">127 ghost vehicles × 42 min = 88+ hours wasted technician time per month.</div>
-      </div>
-      <div class="ba-cc">
-        <div class="ba-pill pill-a">After</div>
-        <div class="ba-ct">Avg search time by GPS drift level — After</div>
-        <div class="ba-cs">GPS_Drift_Meters shown before dispatch — ghost vehicle search drops 40%</div>
-        <div style="height:200px;position:relative"><canvas id="bc-gps-a"></canvas></div>
-        <div class="ins">Ghost vehicle search time: 42 → 25 min. KPI 2 stays within 30-min target in all zones.</div>
-      </div>
+  <!-- GRAPH 3: ART comparison -->
+  <div class="row2">
+    <div class="cc">
+      <div class="ct">Graph 3 — KPI 2: Technician search time before vs after · Same zones, different numbers</div>
+      <div class="cs">Red faded = before · Blue = after · Same 15 zones · GPS flagging before dispatch reduces ghost vehicle search · Root: GPS_Drift_Meters</div>
+      <div style="height:200px;position:relative"><canvas id="ba-g3"></canvas></div>
+    </div>
+    <div class="cc">
+      <div class="ct">Graph 4 — KPI 3: Customer rating by zone before vs after · Same zones, different numbers</div>
+      <div class="cs">Red faded = before · Blue = after · Same 15 zones · Eliminating low-battery encounters raises all zones above 4.2★ · Root: Customer_Rating ← Low_Battery_Flag</div>
+      <div style="height:200px;position:relative"><canvas id="ba-g4"></canvas></div>
     </div>
   </div>
 
-  <!-- Rating chapter -->
-  <div class="ba-sec">
-    <div class="ba-sl">Chapter 3 — Customer satisfaction</div>
-    <div class="ba-st">KPI 3: From 3.83★ to projected 4.21★</div>
-    <div class="narr">Vehicles with Low_Battery_Flag=1 received <strong>3.51★ vs 3.98★</strong> for normal vehicles — a 12% penalty. This gap explains why <strong>KPI 3 sits at 3.83★</strong>, below the 4.2★ target. When KPI 1 is fixed, KPI 3 follows automatically.</div>
-    <div class="ba-pair">
-      <div class="ba-cc">
-        <div class="ba-pill pill-b">Before</div>
-        <div class="ba-ct">KPI 3 — Rating by battery condition (Before)</div>
-        <div class="ba-cs">Low_Battery_Flag=1 vehicles rated 12% lower — dragging fleet ACR below 4.2★</div>
-        <div style="height:200px;position:relative"><canvas id="bc-rat-b"></canvas></div>
-        <div class="ins">0.47★ gap × 484 monthly low-battery events = fleet KPI 3 dragged to 3.83★.</div>
-      </div>
-      <div class="ba-cc">
-        <div class="ba-pill pill-a">After</div>
-        <div class="ba-ct">KPI 3 — Fleet ACR: Before vs After vs Target</div>
-        <div class="ba-cs">Eliminating low-battery encounters moves KPI 3 from 3.83★ to 4.21★</div>
-        <div style="height:200px;position:relative"><canvas id="bc-rat-a"></canvas></div>
-        <div class="ins">One intervention — catching all 484 low-battery vehicles — crosses the 4.2★ target. KPI 1 drives KPI 3.</div>
-      </div>
+  <!-- GRAPH 5: Rating by battery + GRAPH 6: Response chain -->
+  <div class="row2">
+    <div class="cc">
+      <div class="ct">Graph 5 — KPI 3: Rating by battery level before vs after · Same categories, different numbers</div>
+      <div class="cs">Before: 3.51★ vs 3.98★ (12% gap) · After: low-battery encounters eliminated, only 3.98★+ remain · This is the proof that KPI 1 drives KPI 3</div>
+      <div style="height:190px;position:relative"><canvas id="ba-g5"></canvas></div>
+    </div>
+    <div class="cc">
+      <div class="ct">Graph 6 — Full response chain before vs after (minutes per step)</div>
+      <div class="cs">Same 5 steps · Different numbers · 130 → 19 min total · Detect and assign steps fully automated · KPI 2 (search step) improves 18.1 → ~14 min within this chain</div>
+      <div style="height:190px;position:relative"><canvas id="ba-g6"></canvas></div>
     </div>
   </div>
 
-  <!-- Process table -->
-  <div class="ba-sec">
-    <div class="ba-sl">Chapter 4 — Operational transformation</div>
-    <div class="ba-st">Six processes — Before and after with KPI impact</div>
-    <table class="ptbl">
-      <thead><tr><th style="width:14%">Process</th><th style="width:25%">Before (AS-IS)</th><th style="width:25%">After (TO-BE)</th><th style="width:12%">KPI impact</th><th style="width:24%">Measured / Projected</th></tr></thead>
-      <tbody>
-        <tr><td><strong>Battery detection</strong></td><td class="td-b">484 vehicles failed silently. Discovered by riders or manual checks only.</td><td class="td-a">Auto-detected at Battery_Pct=20%. Mission in &lt;30 seconds.</td><td><strong>KPI 1 (FAR)</strong></td><td>FAR: 28.1% → ≥95%</td></tr>
-        <tr><td><strong>Task assignment</strong></td><td class="td-b">WhatsApp dispatch. 20–40 min delay before technician moves.</td><td class="td-a">System auto-assigns nearest technician instantly.</td><td><strong>KPI 2 (ART)</strong></td><td>Assignment: 25 min → &lt;30 sec</td></tr>
-        <tr><td><strong>Vehicle location</strong></td><td class="td-b">GPS drift up to 22m. 127 ghost vehicles. Search: 28–60 min.</td><td class="td-a">GPS_Drift_Meters flagged before dispatch. High-drift in red.</td><td><strong>KPI 2 (ART)</strong></td><td>Ghost search: 42 → 25 min (−40%)</td></tr>
-        <tr><td><strong>Customer experience</strong></td><td class="td-b">Riders encounter low-battery vehicles. ACR=3.83★. Low-batt=3.51★.</td><td class="td-a">Battery issues caught before any rider encounter.</td><td><strong>KPI 3 (ACR)</strong></td><td>ACR: 3.83★ → 4.21★</td></tr>
-        <tr><td><strong>Compliance</strong></td><td class="td-b">Manual spreadsheets. 5 of 7 equity zones below minimum. Coverage: 67%.</td><td class="td-a">City Compliance Portal — live equity zone coverage.</td><td><strong>KPI 1 (FAR)</strong></td><td>Coverage: 67% → 80%+</td></tr>
-        <tr><td><strong>Zone rebalancing</strong></td><td class="td-b">No supply-demand tracking. Downtown shortfall invisible.</td><td class="td-a">Vehicle count vs demand % per zone. Under-minimum flagged Urgent.</td><td><strong>KPI 1, 3</strong></td><td>Downtown gap (463 vehicles, 68% demand) visible and actioned</td></tr>
-      </tbody>
-    </table>
-  </div>
-
-  <!-- Conclusion -->
+  <!-- CONCLUSION -->
   <div class="concl">
-    <h3>Conclusion — What the data shows</h3>
-    <p>FlashRide's problems were not caused by a lack of data — they were caused by data that was never connected, never visible, and never acted on in time. The platform makes existing data actionable.</p>
-    <p><strong>KPI 1 (FAR)</strong> rises from 28.1% to ≥95% when battery failures are caught automatically. <strong>KPI 2 (ART)</strong> stays within 30 minutes. <strong>KPI 3 (ACR)</strong> rises from 3.83 to 4.21★ — proving fixing KPI 1 directly fixes KPI 3.</p>
+    <h3>Conclusion — What all 6 graphs tell together</h3>
+    <p>Every graph traces back to two root columns: <strong>Battery_Pct_Before_Service</strong> drives Graph 1 (FAR), Graph 2 (Downtime), Graph 4 (ACR by zone), and Graph 5 (Rating by battery). <strong>GPS_Drift_Meters</strong> drives Graph 3 (ART by zone) and Graph 6 (Response chain). Fix those two columns — batteries and GPS — and all six graphs improve across all three tabs.</p>
+    <p>Before and After dashboard have the same 6 graphs. Only the numbers change. The Before and After Analysis tab shows both datasets side by side on the same charts so the improvement is immediately visible.</p>
     <div class="cg">
-      <div class="cg-b"><div class="cg-v">28.1% → ≥95%</div><div class="cg-l">KPI 1 FAR — 484 battery events auto-caught per month</div></div>
-      <div class="cg-b"><div class="cg-v">130 → 19 min</div><div class="cg-l">KPI 2 ART — response chain protected by auto-dispatch and GPS flagging</div></div>
-      <div class="cg-b"><div class="cg-v">3.83★ → 4.21★</div><div class="cg-l">KPI 3 ACR — rises when KPI 1 failures stop reaching riders</div></div>
+      <div class="cg-b"><div class="cg-v">28.1% → ≥95%</div><div class="cg-l">KPI 1 FAR · 484 battery events auto-caught · Graphs 1 and 2</div></div>
+      <div class="cg-b"><div class="cg-v">18.1 → ~14 min</div><div class="cg-l">KPI 2 ART · GPS flagging · Ghost search 42→25 min · Graph 3</div></div>
+      <div class="cg-b"><div class="cg-v">3.83★ → 4.21★</div><div class="cg-l">KPI 3 ACR · Fixing KPI 1 fixes KPI 3 · Graphs 4 and 5</div></div>
     </div>
   </div>
 
 </div>
 </div>
 
-<div class="foot">FlashRide Fleet Analytics · IS 5960 · Saint Louis University · Dr. Tatiana Cardona · Synthetic Dataset 1,500 records · Jan 2026 · Frontend Prototype Only</div>
+<div class="foot">FlashRide Fleet Analytics · IS 5960 · Saint Louis University · Dr. Tatiana Cardona · Synthetic Dataset 1,500 records · Jan 2026</div>
 
 <script>
-// ── LOCKED NUMBERS ────────────────────────────────────────────────────────
-var TOTAL=1500, VA=422, UNAVAIL=1078, FAR_B=28.1, ART_B=18.1, ACR_B=3.83;
-var LB=484, GHOST=127, DMG=332, GPS_I=120, OTHER=562;
-var FAR_A=95, ART_A=18, ACR_A=4.21;
-
-var zones=['Z01','Z02','Z03','Z04','Z05','Z06','Z07','Z08','Z09','Z10','Z11','Z12','Z13','Z14','Z15'];
+// ── DATA ─────────────────────────────────────────────────────────────────
+var Z=['Z01','Z02','Z03','Z04','Z05','Z06','Z07','Z08','Z09','Z10','Z11','Z12','Z13','Z14','Z15'];
 var farB=[37.5,21.4,30.4,28.6,21.4,44.4,20.7,16.0,18.2,18.2,45.0,7.7,39.1,36.8,45.0];
 var farA=[92,88,91,90,87,95,88,85,87,89,95,86,93,91,95];
 var artB=[14.9,15.4,18.1,17.2,16.7,17.1,20.1,26.2,19.3,15.0,16.2,17.0,15.6,19.9,21.1];
-var artA=artB.map(function(v){return +(v*0.62).toFixed(1);});
+var artA=artB.map(function(v){return +(v*0.77).toFixed(1);});
 var acrB=[3.93,3.74,3.67,3.84,4.28,3.58,3.95,3.85,4.21,3.88,4.10,3.31,3.59,3.63,3.87];
-var ghostCnt=[3,6,4,2,6,2,3,7,7,3,5,0,1,2,8];
-var driftAvg=[5.50,6.27,5.22,6.40,7.20,4.85,5.90,6.85,6.50,5.80,7.30,5.40,4.90,6.10,8.20];
+var acrA=acrB.map(function(v){return Math.min(4.9,+(v+0.38).toFixed(2));});
+var ghostB=[3,6,4,2,6,2,3,7,7,3,5,0,1,2,8];
+var ghostA=ghostB.map(function(v){return Math.round(v*0.6);});
+var driftB=[5.50,6.27,5.22,6.40,7.20,4.85,5.90,6.85,6.50,5.80,7.30,5.40,4.90,6.10,8.20];
+var driftA=driftB.map(function(v){return +(v*0.72).toFixed(2);});
 
-// ── COLORS ───────────────────────────────────────────────────────────────
-var N8='#0A2472',N7='#1565C0',N6='#1E88E5',N5='#42A5F5',N4='#90CAF9',N3='#BBDEFB';
-var RD='#E53935',R2='#FFCDD2',CY='#00B0FF',GY='#546E7A',AM='#F57F17';
+var NV='#0A2472',BL='#1565C0',M6='#1E88E5',S5='#42A5F5',RD='#E53935',R2='#FFCDD2',
+    CY='#00B0FF',GY='#546E7A',AM='#F57F17',GN='#2E7D32';
 
 Chart.defaults.font.family="'Segoe UI',Arial,sans-serif";
-Chart.defaults.plugins.tooltip.backgroundColor=N8;
+Chart.defaults.plugins.tooltip.backgroundColor=NV;
 Chart.defaults.plugins.tooltip.padding=10;
 var GRD={color:'#E3F2FD'};
-var TCK={color:GY,font:{size:10}};
-var NL={plugins:{legend:{display:false}}};
-var WL={plugins:{legend:{display:true,labels:{font:{size:11},boxWidth:12,padding:12}}}};
+var TCK9={color:GY,font:{size:9}};
+var TCK10={color:GY,font:{size:10}};
+var LL={plugins:{legend:{display:false}}};
+var LW={plugins:{legend:{display:true,labels:{font:{size:10},boxWidth:11,padding:10}}}};
 
-function lineT(v,c,lbl){return{type:'line',label:lbl||'Target',data:zones.map(function(){return v;}),borderColor:c||RD,borderWidth:2,borderDash:[6,4],pointRadius:0,fill:false,order:1};}
+function tgt(v,c,lbl){return{type:'line',label:lbl||'Target',data:Z.map(function(){return v;}),borderColor:c||RD,borderWidth:2,borderDash:[5,4],pointRadius:0,fill:false,order:0};}
 
-// ── TAB 1: BEFORE charts ──────────────────────────────────────────────────
-// FAR by zone — MAIN CHART
-new Chart(document.getElementById('b-far'),{type:'bar',data:{labels:zones,datasets:[
-  {label:'FAR (%)',data:farB,backgroundColor:farB.map(function(v){return v>=40?N7:v>=25?N5:RD;}),borderRadius:4,order:2},
-  lineT(95,RD,'Target 95%')
-]},options:{responsive:true,maintainAspectRatio:false,...WL,
-  scales:{x:{grid:{display:false},ticks:{color:GY,font:{size:10}}},
-          y:{grid:GRD,ticks:{color:GY,font:{size:10},callback:function(v){return v+'%';}},min:0,max:100}}}});
+// ── BUILD ALL CHARTS ──────────────────────────────────────────────────────
+function buildAll(){
 
-// Downtime doughnut
-new Chart(document.getElementById('b-downtime'),{type:'doughnut',data:{
-  labels:['Low Battery 32.3%','Other Unavailability 37.5%','Damaged 22.1%','GPS Issues 8.0%'],
-  datasets:[{data:[32.3,37.5,22.1,8.0],backgroundColor:[RD,N8,N6,N5],borderWidth:2,borderColor:'#fff'}]
-},options:{responsive:true,maintainAspectRatio:false,cutout:'55%',
-  plugins:{legend:{position:'bottom',labels:{font:{size:10},padding:8,boxWidth:10}}}}});
+  // ─ BEFORE G1: FAR by zone ─
+  new Chart(document.getElementById('b-g1'),{type:'bar',data:{labels:Z,datasets:[
+    {label:'FAR (%)',data:farB,backgroundColor:farB.map(function(v){return v>=40?BL:v>=25?S5:RD;}),borderRadius:3,order:1},
+    tgt(95,RD,'Target 95%')
+  ]},options:{responsive:true,maintainAspectRatio:false,...LW,scales:{x:{grid:{display:false},ticks:TCK9},y:{grid:GRD,ticks:{color:GY,font:{size:9},callback:function(v){return v+'%';}},min:0,max:100}}}});
 
-// ART by zone
-new Chart(document.getElementById('b-art'),{type:'bar',data:{labels:zones,datasets:[
-  {label:'Avg Search Time (min)',data:artB,backgroundColor:artB.map(function(v){return v>22?RD:N6;}),borderRadius:3,order:2},
-  lineT(30,RD,'Target 30 min')
-]},options:{responsive:true,maintainAspectRatio:false,...WL,
-  scales:{x:{grid:{display:false},ticks:{color:GY,font:{size:9}}},y:{grid:GRD,ticks:TCK,min:0,max:35}}}});
+  // ─ BEFORE G2: Downtime ─
+  new Chart(document.getElementById('b-g2'),{type:'bar',data:{
+    labels:['Low Battery','Other Unavailability','Damaged','GPS Issues'],
+    datasets:[{
+      label:'% of fleet downtime',
+      data:[32.3,37.5,22.1,8.0],
+      backgroundColor:[RD,NV,M6,S5],
+      borderRadius:5
+    }]
+  },options:{responsive:true,maintainAspectRatio:false,indexAxis:'y',...LL,
+    scales:{
+      x:{grid:GRD,ticks:{color:GY,font:{size:9},callback:function(v){return v+'%';}},min:0,max:45},
+      y:{grid:{display:false},ticks:TCK10}
+    }}});
 
-// ACR by zone
-new Chart(document.getElementById('b-acr'),{type:'bar',data:{labels:zones,datasets:[
-  {label:'Avg Rating (★)',data:acrB,backgroundColor:acrB.map(function(v){return v>=4.2?N7:v>=3.7?N5:RD;}),borderRadius:3,order:2},
-  lineT(4.2,RD,'Target 4.2★')
-]},options:{responsive:true,maintainAspectRatio:false,...WL,
-  scales:{x:{grid:{display:false},ticks:{color:GY,font:{size:9}}},
-          y:{grid:GRD,ticks:{color:GY,font:{size:10},callback:function(v){return v+'★';}},min:1,max:5}}}});
+  // ─ BEFORE G3: ART by zone ─
+  new Chart(document.getElementById('b-g3'),{type:'bar',data:{labels:Z,datasets:[
+    {label:'Avg Search Time (min)',data:artB,backgroundColor:artB.map(function(v){return v>22?RD:M6;}),borderRadius:3,order:1},
+    tgt(30,RD,'Target 30 min')
+  ]},options:{responsive:true,maintainAspectRatio:false,...LW,scales:{x:{grid:{display:false},ticks:TCK9},y:{grid:GRD,ticks:TCK9,min:0,max:35}}}});
 
-// Rating by battery
-new Chart(document.getElementById('b-batt'),{type:'bar',data:{
-  labels:['Low Battery Vehicles\n(Low_Battery_Flag=1)','Normal Battery\n(Low_Battery_Flag=0)'],
-  datasets:[{data:[3.51,3.98],backgroundColor:[RD,N7],borderRadius:5}]
-},options:{responsive:true,maintainAspectRatio:false,...NL,
-  scales:{x:{grid:{display:false},ticks:{color:GY,font:{size:10}}},
-          y:{grid:GRD,ticks:{color:GY,font:{size:10},callback:function(v){return v+'★';}},min:3,max:5}}}});
+  // ─ BEFORE G4: ACR by zone ─
+  new Chart(document.getElementById('b-g4'),{type:'bar',data:{labels:Z,datasets:[
+    {label:'Avg Rating (★)',data:acrB,backgroundColor:acrB.map(function(v){return v>=4.2?BL:v>=3.7?S5:RD;}),borderRadius:3,order:1},
+    tgt(4.2,RD,'Target 4.2★')
+  ]},options:{responsive:true,maintainAspectRatio:false,...LW,scales:{x:{grid:{display:false},ticks:TCK9},y:{grid:GRD,ticks:{color:GY,font:{size:9},callback:function(v){return v+'★';}},min:1,max:5}}}});
 
-// GPS drift + ghost
-new Chart(document.getElementById('b-gps'),{type:'bar',data:{labels:zones,datasets:[
-  {type:'bar',label:'Ghost Vehicles',data:ghostCnt,backgroundColor:RD,borderRadius:3,yAxisID:'y'},
-  {type:'line',label:'Avg GPS Drift (m)',data:driftAvg,borderColor:CY,backgroundColor:'rgba(0,176,255,.1)',borderWidth:2,pointRadius:3,fill:true,tension:.3,yAxisID:'y2'}
-]},options:{responsive:true,maintainAspectRatio:false,...WL,
-  scales:{x:{grid:{display:false},ticks:{color:GY,font:{size:9}}},
-          y:{grid:GRD,ticks:TCK,position:'left',min:0,max:10},
-          y2:{grid:{display:false},ticks:{color:CY,font:{size:10},callback:function(v){return v+'m';}},position:'right',min:0,max:12}}}});
+  // ─ BEFORE G5: Rating by battery ─
+  new Chart(document.getElementById('b-g5'),{type:'bar',data:{
+    labels:['Low Battery\n(Low_Battery_Flag=1)\n3.51★','Normal Battery\n(Low_Battery_Flag=0)\n3.98★'],
+    datasets:[{data:[3.51,3.98],backgroundColor:[RD,BL],borderRadius:5}]
+  },options:{responsive:true,maintainAspectRatio:false,...LL,scales:{x:{grid:{display:false},ticks:TCK10},y:{grid:GRD,ticks:{color:GY,font:{size:9},callback:function(v){return v+'★';}},min:3,max:5}}}});
 
-// Dispatch mode
-new Chart(document.getElementById('b-dispatch'),{type:'doughnut',data:{
-  labels:['System Auto-Dispatch (61%)','Manual WhatsApp (39%)'],
-  datasets:[{data:[61,39],backgroundColor:[N7,RD],borderWidth:2,borderColor:'#fff'}]
-},options:{responsive:true,maintainAspectRatio:false,cutout:'55%',
-  plugins:{legend:{position:'bottom',labels:{font:{size:11},padding:12,boxWidth:10}}}}});
+  // ─ BEFORE G6: GPS + Ghost ─
+  new Chart(document.getElementById('b-g6'),{type:'bar',data:{labels:Z,datasets:[
+    {type:'bar',label:'Ghost Vehicles',data:ghostB,backgroundColor:RD,borderRadius:3,yAxisID:'y'},
+    {type:'line',label:'Avg GPS Drift (m)',data:driftB,borderColor:CY,backgroundColor:'rgba(0,176,255,.1)',borderWidth:2,pointRadius:3,fill:true,tension:.3,yAxisID:'y2'}
+  ]},options:{responsive:true,maintainAspectRatio:false,...LW,scales:{x:{grid:{display:false},ticks:TCK9},y:{grid:GRD,ticks:TCK9,position:'left',min:0,max:12},y2:{grid:{display:false},ticks:{color:CY,font:{size:9},callback:function(v){return v+'m';}},position:'right',min:0,max:12}}}});
 
-// ── TAB 2: AFTER charts ───────────────────────────────────────────────────
-// FAR after — before faded + after blue
-new Chart(document.getElementById('a-far'),{type:'bar',data:{labels:zones,datasets:[
-  {label:'FAR % Before (AS-IS)',data:farB,backgroundColor:'rgba(229,57,53,.25)',borderRadius:3,order:3},
-  {label:'FAR % After (Projected)',data:farA,backgroundColor:N7,borderRadius:3,order:2},
-  {type:'line',label:'Target 95%',data:zones.map(function(){return 95;}),borderColor:CY,borderWidth:2,borderDash:[6,4],pointRadius:0,fill:false,order:1}
-]},options:{responsive:true,maintainAspectRatio:false,...WL,
-  scales:{x:{grid:{display:false},ticks:{color:GY,font:{size:10}}},
-          y:{grid:GRD,ticks:{color:GY,font:{size:10},callback:function(v){return v+'%';}},min:0,max:100}}}});
+  // ═══ AFTER CHARTS (same types, better numbers) ═══
 
-// Downtime after
-new Chart(document.getElementById('a-downtime'),{type:'doughnut',data:{
-  labels:['Low Battery 0% (auto-caught)','Other Unavailability 37.5%','Damaged 22.1%','GPS Issues 8.0%'],
-  datasets:[{data:[0.01,37.5,22.1,8.0],backgroundColor:[N3,N8,N6,N5],borderWidth:2,borderColor:'#fff'}]
-},options:{responsive:true,maintainAspectRatio:false,cutout:'55%',
-  plugins:{legend:{position:'bottom',labels:{font:{size:10},padding:8,boxWidth:10}}}}});
+  // ─ AFTER G1: FAR (before faded + after blue) ─
+  new Chart(document.getElementById('a-g1'),{type:'bar',data:{labels:Z,datasets:[
+    {label:'Before (AS-IS)',data:farB,backgroundColor:'rgba(229,57,53,.22)',borderRadius:3,order:2},
+    {label:'After (Projected)',data:farA,backgroundColor:BL,borderRadius:3,order:1},
+    {type:'line',label:'Target 95%',data:Z.map(function(){return 95;}),borderColor:CY,borderWidth:2,borderDash:[5,4],pointRadius:0,fill:false,order:0}
+  ]},options:{responsive:true,maintainAspectRatio:false,...LW,scales:{x:{grid:{display:false},ticks:TCK9},y:{grid:GRD,ticks:{color:GY,font:{size:9},callback:function(v){return v+'%';}},min:0,max:100}}}});
 
-// ART after
-new Chart(document.getElementById('a-art'),{type:'bar',data:{labels:zones,datasets:[
-  {label:'Before',data:artB,backgroundColor:'rgba(229,57,53,.25)',borderRadius:3,order:3},
-  {label:'After (Projected)',data:artA,backgroundColor:N7,borderRadius:3,order:2},
-  {type:'line',label:'Target 30 min',data:zones.map(function(){return 30;}),borderColor:CY,borderWidth:2,borderDash:[6,4],pointRadius:0,fill:false,order:1}
-]},options:{responsive:true,maintainAspectRatio:false,...WL,
-  scales:{x:{grid:{display:false},ticks:{color:GY,font:{size:9}}},y:{grid:GRD,ticks:TCK,min:0,max:35}}}});
+  // ─ AFTER G2: Downtime (low battery gone) ─
+  new Chart(document.getElementById('a-g2'),{type:'bar',data:{
+    labels:['Low Battery','Other Unavailability','Damaged','GPS Issues'],
+    datasets:[
+      {label:'Before (%)',data:[32.3,37.5,22.1,8.0],backgroundColor:'rgba(229,57,53,.25)',borderRadius:5},
+      {label:'After (%)',data:[0,37.5,22.1,8.0],backgroundColor:[BL,NV,M6,S5],borderRadius:5}
+    ]
+  },options:{responsive:true,maintainAspectRatio:false,indexAxis:'y',...LW,
+    scales:{
+      x:{grid:GRD,ticks:{color:GY,font:{size:9},callback:function(v){return v+'%';}},min:0,max:45},
+      y:{grid:{display:false},ticks:TCK10}
+    }}});
 
-// Response chain
-new Chart(document.getElementById('a-chain'),{type:'bar',data:{
-  labels:['Detect Battery','Assign Tech','Tech Search','Service Vehicle','Update Status'],
-  datasets:[
-    {label:'Before (~130 min)',data:[40,25,42,15,8],backgroundColor:'rgba(229,57,53,.4)',borderRadius:4},
-    {label:'After (~19 min)',data:[0.5,0.5,5,12,0.5],backgroundColor:N7,borderRadius:4}
-  ]
-},options:{responsive:true,maintainAspectRatio:false,...WL,
-  scales:{x:{grid:{display:false},ticks:{color:GY,font:{size:10}}},
-          y:{grid:GRD,ticks:{color:GY,font:{size:10},callback:function(v){return v+' min';}}}}}});
+  // ─ AFTER G3: ART (before faded + after blue) ─
+  new Chart(document.getElementById('a-g3'),{type:'bar',data:{labels:Z,datasets:[
+    {label:'Before',data:artB,backgroundColor:'rgba(229,57,53,.22)',borderRadius:3,order:2},
+    {label:'After (Projected)',data:artA,backgroundColor:BL,borderRadius:3,order:1},
+    {type:'line',label:'Target 30 min',data:Z.map(function(){return 30;}),borderColor:CY,borderWidth:2,borderDash:[5,4],pointRadius:0,fill:false,order:0}
+  ]},options:{responsive:true,maintainAspectRatio:false,...LW,scales:{x:{grid:{display:false},ticks:TCK9},y:{grid:GRD,ticks:TCK9,min:0,max:35}}}});
 
-// Equity after
-new Chart(document.getElementById('a-equity'),{type:'bar',data:{
-  labels:['Z02','Z04','Z05','Z06','Z09','Z11','Z13'],
-  datasets:[
-    {label:'Before (actual)',data:[112,103,79,95,88,91,107],backgroundColor:'rgba(229,57,53,.35)',borderRadius:3},
-    {label:'After (rebalanced)',data:[122,112,111,113,110,114,112],backgroundColor:N7,borderRadius:3},
-    {type:'line',label:'Required minimum',data:[120,110,110,110,110,110,110],borderColor:CY,borderWidth:2,borderDash:[5,4],pointRadius:0,fill:false}
-  ]
-},options:{responsive:true,maintainAspectRatio:false,...WL,
-  scales:{x:{grid:{display:false},ticks:TCK},y:{grid:GRD,ticks:TCK,min:60,max:140}}}});
+  // ─ AFTER G4: ACR (before faded + after blue) ─
+  new Chart(document.getElementById('a-g4'),{type:'bar',data:{labels:Z,datasets:[
+    {label:'Before',data:acrB,backgroundColor:'rgba(229,57,53,.22)',borderRadius:3,order:2},
+    {label:'After (Projected)',data:acrA,backgroundColor:BL,borderRadius:3,order:1},
+    {type:'line',label:'Target 4.2★',data:Z.map(function(){return 4.2;}),borderColor:CY,borderWidth:2,borderDash:[5,4],pointRadius:0,fill:false,order:0}
+  ]},options:{responsive:true,maintainAspectRatio:false,...LW,scales:{x:{grid:{display:false},ticks:TCK9},y:{grid:GRD,ticks:{color:GY,font:{size:9},callback:function(v){return v+'★';}},min:1,max:5}}}});
 
-// ── TAB 3: B&A charts ─────────────────────────────────────────────────────
-// KPI compare
-new Chart(document.getElementById('bc-kpi'),{type:'bar',data:{
-  labels:['KPI 1 — FAR (%)','KPI 2 — Response Efficiency\n(inverted, higher=better)','KPI 3 — ACR (★×20)'],
-  datasets:[
-    {label:'Before (AS-IS)',data:[28.1,69.8,76.6],backgroundColor:R2,borderRadius:6},
-    {label:'After (Target/Projected)',data:[95,75,84.2],backgroundColor:N7,borderRadius:6}
-  ]
-},options:{responsive:true,maintainAspectRatio:false,...WL,
-  scales:{x:{grid:{display:false},ticks:{color:GY,font:{size:11}}},
-          y:{min:0,max:100,grid:GRD,ticks:{color:GY,font:{size:10}},
-             title:{display:true,text:'Normalized score (0–100)',color:GY,font:{size:10}}}}}});
+  // ─ AFTER G5: Rating by battery (before faded + after) ─
+  new Chart(document.getElementById('a-g5'),{type:'bar',data:{
+    labels:['Low Battery\n(eliminated after solution)','Normal Battery\n(all riders now get these)'],
+    datasets:[
+      {label:'Before',data:[3.51,3.98],backgroundColor:'rgba(229,57,53,.3)',borderRadius:4},
+      {label:'After (Projected)',data:[0,4.21],backgroundColor:BL,borderRadius:4}
+    ]
+  },options:{responsive:true,maintainAspectRatio:false,...LW,scales:{x:{grid:{display:false},ticks:TCK10},y:{grid:GRD,ticks:{color:GY,font:{size:9},callback:function(v){return v+'★';}},min:0,max:5}}}});
 
-// Downtime B&A
-new Chart(document.getElementById('bc-dt-b'),{type:'bar',data:{
-  labels:['Low Battery','Other Unavail','Damaged','GPS Issues'],
-  datasets:[{data:[32.3,37.5,22.1,8.0],backgroundColor:[RD,N8,N6,N5],borderRadius:5}]
-},options:{responsive:true,maintainAspectRatio:false,...NL,
-  scales:{x:{grid:{display:false},ticks:{color:GY,font:{size:11}}},
-          y:{grid:GRD,ticks:{color:GY,font:{size:10},callback:function(v){return v+'%';}}}}}});
+  // ─ AFTER G6: Ghost vehicles + GPS (before faded + after blue) ─
+  new Chart(document.getElementById('a-g6'),{type:'bar',data:{labels:Z,datasets:[
+    {type:'bar',label:'Ghost Vehicles Before',data:ghostB,backgroundColor:'rgba(229,57,53,.25)',borderRadius:3,yAxisID:'y'},
+    {type:'bar',label:'Ghost Vehicles After',data:ghostA,backgroundColor:BL,borderRadius:3,yAxisID:'y'},
+    {type:'line',label:'GPS Drift After (m)',data:driftA,borderColor:CY,backgroundColor:'rgba(0,176,255,.08)',borderWidth:2,pointRadius:3,fill:true,tension:.3,yAxisID:'y2'}
+  ]},options:{responsive:true,maintainAspectRatio:false,...LW,scales:{x:{grid:{display:false},ticks:TCK9},y:{grid:GRD,ticks:TCK9,position:'left',min:0,max:12},y2:{grid:{display:false},ticks:{color:CY,font:{size:9},callback:function(v){return v+'m';}},position:'right',min:0,max:12}}}});
 
-new Chart(document.getElementById('bc-dt-a'),{type:'bar',data:{
-  labels:['Low Battery','Other Unavail','Damaged','GPS Issues'],
-  datasets:[{data:[0,37.5,22.1,8.0],backgroundColor:[N3,N8,N6,N5],borderRadius:5}]
-},options:{responsive:true,maintainAspectRatio:false,...NL,
-  scales:{x:{grid:{display:false},ticks:{color:GY,font:{size:11}}},
-          y:{grid:GRD,ticks:{color:GY,font:{size:10},callback:function(v){return v+'%';}}}}}});
+  // ═══ B&A COMPARISON CHARTS (grouped before vs after) ═══
 
-// Response chain B&A
-new Chart(document.getElementById('bc-chain'),{type:'bar',data:{
-  labels:['Detect Battery Issue','Assign Technician','Technician Search','Service Vehicle','Update Status'],
-  datasets:[
-    {label:'Before (WhatsApp manual) ~130 min',data:[40,25,42,15,8],backgroundColor:R2,borderRadius:4},
-    {label:'After (auto-mission trigger) ~19 min',data:[0.5,0.5,5,12,0.5],backgroundColor:N7,borderRadius:4}
-  ]
-},options:{responsive:true,maintainAspectRatio:false,...WL,
-  scales:{x:{grid:{display:false},ticks:{color:GY,font:{size:10}}},
-          y:{grid:GRD,ticks:{color:GY,font:{size:10},callback:function(v){return v+' min';}}}}}});
+  // ─ BA G1: FAR comparison ─
+  new Chart(document.getElementById('ba-g1'),{type:'bar',data:{labels:Z,datasets:[
+    {label:'Before (AS-IS)',data:farB,backgroundColor:R2,borderRadius:3,order:2},
+    {label:'After (Projected)',data:farA,backgroundColor:BL,borderRadius:3,order:1},
+    {type:'line',label:'Target 95%',data:Z.map(function(){return 95;}),borderColor:RD,borderWidth:2,borderDash:[5,4],pointRadius:0,fill:false,order:0}
+  ]},options:{responsive:true,maintainAspectRatio:false,...LW,scales:{x:{grid:{display:false},ticks:TCK9},y:{grid:GRD,ticks:{color:GY,font:{size:9},callback:function(v){return v+'%';}},min:0,max:100}}}});
 
-// GPS B&A
-new Chart(document.getElementById('bc-gps-b'),{type:'bar',data:{
-  labels:['Low drift (0–5m)','Medium drift (5–10m)','Ghost Vehicle (>10m)'],
-  datasets:[{data:[15,28,42],backgroundColor:[N7,N5,RD],borderRadius:5}]
-},options:{responsive:true,maintainAspectRatio:false,...NL,
-  scales:{x:{grid:{display:false},ticks:{color:GY,font:{size:10}}},
-          y:{grid:GRD,ticks:{color:GY,font:{size:10},callback:function(v){return v+' min';}}}}}});
+  // ─ BA G2: Downtime comparison ─
+  new Chart(document.getElementById('ba-g2'),{type:'bar',data:{
+    labels:['Low Battery','Other Unavail','Damaged','GPS Issues'],
+    datasets:[
+      {label:'Before (%)',data:[32.3,37.5,22.1,8.0],backgroundColor:R2,borderRadius:4},
+      {label:'After (%)',data:[0,37.5,22.1,8.0],backgroundColor:BL,borderRadius:4}
+    ]
+  },options:{responsive:true,maintainAspectRatio:false,...LW,scales:{x:{grid:{display:false},ticks:TCK10},y:{grid:GRD,ticks:{color:GY,font:{size:9},callback:function(v){return v+'%';}}}}}});
 
-new Chart(document.getElementById('bc-gps-a'),{type:'bar',data:{
-  labels:['Low drift (0–5m)','Medium drift (5–10m)','Ghost Vehicle (>10m)'],
-  datasets:[
-    {label:'Before',data:[15,28,42],backgroundColor:R2,borderRadius:4},
-    {label:'After',data:[12,18,25],backgroundColor:N7,borderRadius:4}
-  ]
-},options:{responsive:true,maintainAspectRatio:false,...WL,
-  scales:{x:{grid:{display:false},ticks:{color:GY,font:{size:10}}},
-          y:{grid:GRD,ticks:{color:GY,font:{size:10},callback:function(v){return v+' min';}}}}}});
+  // ─ BA G3: ART comparison ─
+  new Chart(document.getElementById('ba-g3'),{type:'bar',data:{labels:Z,datasets:[
+    {label:'Before (min)',data:artB,backgroundColor:R2,borderRadius:3,order:2},
+    {label:'After (min)',data:artA,backgroundColor:BL,borderRadius:3,order:1},
+    {type:'line',label:'Target 30 min',data:Z.map(function(){return 30;}),borderColor:RD,borderWidth:2,borderDash:[5,4],pointRadius:0,fill:false,order:0}
+  ]},options:{responsive:true,maintainAspectRatio:false,...LW,scales:{x:{grid:{display:false},ticks:TCK9},y:{grid:GRD,ticks:TCK9,min:0,max:35}}}});
 
-// Rating B&A
-new Chart(document.getElementById('bc-rat-b'),{type:'bar',data:{
-  labels:['Low Battery\n(Low_Battery_Flag=1)','Normal Battery\n(Low_Battery_Flag=0)'],
-  datasets:[{data:[3.51,3.98],backgroundColor:[RD,N7],borderRadius:5}]
-},options:{responsive:true,maintainAspectRatio:false,...NL,
-  scales:{x:{grid:{display:false},ticks:{color:GY,font:{size:10}}},
-          y:{min:3,max:5,grid:GRD,ticks:{color:GY,font:{size:10},callback:function(v){return v+'★';}}}}}});
+  // ─ BA G4: ACR comparison ─
+  new Chart(document.getElementById('ba-g4'),{type:'bar',data:{labels:Z,datasets:[
+    {label:'Before (★)',data:acrB,backgroundColor:R2,borderRadius:3,order:2},
+    {label:'After (★)',data:acrA,backgroundColor:BL,borderRadius:3,order:1},
+    {type:'line',label:'Target 4.2★',data:Z.map(function(){return 4.2;}),borderColor:RD,borderWidth:2,borderDash:[5,4],pointRadius:0,fill:false,order:0}
+  ]},options:{responsive:true,maintainAspectRatio:false,...LW,scales:{x:{grid:{display:false},ticks:TCK9},y:{grid:GRD,ticks:{color:GY,font:{size:9},callback:function(v){return v+'★';}},min:1,max:5}}}});
 
-new Chart(document.getElementById('bc-rat-a'),{type:'bar',data:{
-  labels:['Before\n(KPI 3=3.83★)','After\n(KPI 3=4.21★)','Target\n(≥4.2★)'],
-  datasets:[{data:[3.83,4.21,4.2],backgroundColor:[R2,N7,N3],borderRadius:5}]
-},options:{responsive:true,maintainAspectRatio:false,...NL,
-  scales:{x:{grid:{display:false},ticks:{color:GY,font:{size:10}}},
-          y:{min:3,max:5,grid:GRD,ticks:{color:GY,font:{size:10},callback:function(v){return v+'★';}}}}}});
+  // ─ BA G5: Rating by battery comparison ─
+  new Chart(document.getElementById('ba-g5'),{type:'bar',data:{
+    labels:['Low Battery\n(Low_Battery_Flag=1)','Normal Battery\n(Low_Battery_Flag=0)'],
+    datasets:[
+      {label:'Before (★)',data:[3.51,3.98],backgroundColor:R2,borderRadius:4},
+      {label:'After (★)',data:[0,4.21],backgroundColor:BL,borderRadius:4}
+    ]
+  },options:{responsive:true,maintainAspectRatio:false,...LW,scales:{x:{grid:{display:false},ticks:TCK10},y:{grid:GRD,ticks:{color:GY,font:{size:9},callback:function(v){return v+'★';}},min:0,max:5}}}});
+
+  // ─ BA G6: Response chain comparison ─
+  new Chart(document.getElementById('ba-g6'),{type:'bar',data:{
+    labels:['Detect Battery','Assign Tech','Search Vehicle\n(KPI 2 step)','Service Vehicle','Update Records'],
+    datasets:[
+      {label:'Before (min) — Total ~130',data:[40,25,18,15,8],backgroundColor:R2,borderRadius:4},
+      {label:'After (min) — Total ~19',data:[0.5,0.5,14,4,0.5],backgroundColor:BL,borderRadius:4}
+    ]
+  },options:{responsive:true,maintainAspectRatio:false,...LW,scales:{x:{grid:{display:false},ticks:TCK10},y:{grid:GRD,ticks:{color:GY,font:{size:9},callback:function(v){return v+' min';}}}}}});
+}
+
+buildAll();
 
 // ── TAB SWITCH ────────────────────────────────────────────────────────────
 function sw(name,el){
